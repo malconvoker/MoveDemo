@@ -1,0 +1,69 @@
+{
+	"name": "PlayerBase",
+	"plugin-id": "Sprite",
+	"sid": 645735548878440,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "MoveX",
+			"type": "number",
+			"desc": "X to move to",
+			"sid": 636931300626041
+		},
+		{
+			"name": "MoveY",
+			"type": "number",
+			"desc": "X to move to",
+			"sid": 682106462273991
+		},
+		{
+			"name": "MoveAngle",
+			"type": "number",
+			"desc": "Angle to move",
+			"sid": 125893066774733
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Pathfinding",
+			"name": "Pathfinding",
+			"sid": 875123936108729
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 40,
+						"height": 40,
+						"originX": 0,
+						"originY": 0,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 8871924,
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "center",
+								"x": 0.5,
+								"y": 0.5
+							}
+						],
+						"duration": 1
+					}
+				],
+				"sid": 926940309188685,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}
