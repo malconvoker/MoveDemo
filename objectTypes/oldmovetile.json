@@ -1,5 +1,5 @@
 {
-	"name": "Sprite",
+	"name": "OldMoveTile",
 	"plugin-id": "Sprite",
 	"sid": 839554839176056,
 	"isGlobal": false,
@@ -11,24 +11,24 @@
 			{
 				"frames": [
 					{
-						"width": 40,
-						"height": 40,
+						"width": 20,
+						"height": 20,
 						"originX": 0,
 						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 2759204,
+						"imageSpriteId": 8942587,
 						"collisionPoly": {
 							"points": [
-								0.025,
-								0.025,
-								0.975,
-								0.025,
-								0.975,
-								0.975,
-								0.025,
-								0.975
+								0.05,
+								0.05,
+								0.95,
+								0.05,
+								0.95,
+								0.95,
+								0.05,
+								0.95
 							]
 						},
 						"useCollisionPoly": true,

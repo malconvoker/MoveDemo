@@ -23,9 +23,19 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "TouchMode",
+			"type": "string",
+			"initialValue": "default",
+			"comment": "Current mode of touch: default",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 121488578550355
+		},
+		{
+			"eventType": "variable",
 			"name": "Tile",
 			"type": "number",
-			"initialValue": "40",
+			"initialValue": "20",
 			"comment": "Size of tile in pixels",
 			"isStatic": false,
 			"isConstant": true,

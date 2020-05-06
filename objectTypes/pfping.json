@@ -1,5 +1,5 @@
 {
-	"name": "Sprite2",
+	"name": "PfPing",
 	"plugin-id": "Sprite",
 	"sid": 470009677099168,
 	"isGlobal": false,
@@ -11,14 +11,14 @@
 			{
 				"frames": [
 					{
-						"width": 32,
-						"height": 32,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "C:\\Users\\mctur\\Downloads\\000.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 1814466,
+						"imageSpriteId": 4072446,
 						"collisionPoly": {
 							"points": [
 								0.40625,
@@ -43,74 +43,74 @@
 						"duration": 1
 					},
 					{
-						"width": 32,
-						"height": 32,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "C:\\Users\\mctur\\Downloads\\001.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 190157,
+						"imageSpriteId": 437726,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 32,
-						"height": 32,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "C:\\Users\\mctur\\Downloads\\002.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 6674336,
+						"imageSpriteId": 5974563,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 32,
-						"height": 32,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "C:\\Users\\mctur\\Downloads\\003.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 9760616,
+						"imageSpriteId": 1987205,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 32,
-						"height": 32,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "C:\\Users\\mctur\\Downloads\\004.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 9831743,
+						"imageSpriteId": 1618866,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 32,
-						"height": 32,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "C:\\Users\\mctur\\Downloads\\005.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 1600374,
+						"imageSpriteId": 9162930,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 32,
-						"height": 32,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "C:\\Users\\mctur\\Downloads\\006.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 3566181,
+						"imageSpriteId": 2693397,
 						"useCollisionPoly": true,
 						"duration": 1
 					}

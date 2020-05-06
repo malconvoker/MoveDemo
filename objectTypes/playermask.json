@@ -21,10 +21,10 @@
 						"height": 20,
 						"originX": 0.5,
 						"originY": 0.8,
-						"originalSource": "C:\\Users\\mctur\\Desktop\\Files\\Luotsaamo\\Level 4\\LailaConcept.png",
+						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 1213630,
+						"imageSpriteId": 9370005,
 						"collisionPoly": {
 							"points": [
 								0,
@@ -50,7 +50,50 @@
 					}
 				],
 				"sid": 427367392702679,
-				"name": "Animation 1",
+				"name": "New",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 16,
+						"height": 20,
+						"originX": 0.5,
+						"originY": 0.8,
+						"originalSource": "C:\\Users\\mctur\\Desktop\\Files\\Luotsaamo\\Level 4\\LailaConcept.png",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2946310,
+						"collisionPoly": {
+							"points": [
+								0,
+								0,
+								1,
+								0,
+								1,
+								0,
+								1,
+								1,
+								1,
+								1,
+								1,
+								1,
+								0,
+								1,
+								0,
+								1
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 808525003682823,
+				"name": "Old",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,

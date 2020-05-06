@@ -27,11 +27,11 @@
 				{
 					"id": "set-position",
 					"objectClass": "CursorTest",
-					"sid": 742614074749211,
+					"sid": 319344139592282,
 					"disabled": true,
 					"parameters": {
-						"x": "floor(Mouse.X/40)*40",
-						"y": "floor(Mouse.Y/40)*40"
+						"x": "floor(Touch.X/40)*40",
+						"y": "floor(Touch.Y/40)*40"
 					}
 				},
 				{
@@ -46,21 +46,44 @@
 				{
 					"id": "set-text",
 					"objectClass": "TXTcursorangle",
-					"sid": 215645618384895,
+					"sid": 592333950038527,
 					"parameters": {
-						"text": "Functions.GetMoveAngle & \"°, \" & PlayerBase.MoveAngle & \"°\""
+						"text": "\"Touch \" & Functions.GetMoveAngle & \"°, Move \" & PlayerBase.MoveAngle & \"°\""
 					}
 				},
 				{
-					"id": "set-angle",
-					"objectClass": "CollisionSprite",
-					"sid": 657686303767199,
+					"id": "set-text",
+					"objectClass": "TXTturn",
+					"sid": 188704215639888,
 					"parameters": {
-						"angle": "Functions.CursorDistance"
+						"text": "\"Turn \" & Turn"
 					}
 				}
 			],
-			"sid": 360115802153197
+			"sid": 360115802153197,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-on-screen",
+							"objectClass": "CursorTest",
+							"sid": 784163220509569
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle",
+							"objectClass": "CollisionSprite",
+							"sid": 115464768060586,
+							"parameters": {
+								"angle": "Functions.CursorDistance"
+							}
+						}
+					],
+					"sid": 612696239599481
+				}
+			]
 		},
 		{
 			"eventType": "block",
@@ -71,26 +94,11 @@
 					"sid": 494671987899036
 				},
 				{
-					"id": "is-between-values",
-					"objectClass": "System",
-					"sid": 465050566835198,
-					"disabled": true,
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 359183546486801,
 					"parameters": {
-						"value": "Touch.X",
-						"lower-bound": "PlayerBase.X",
-						"upper-bound": "PlayerBase.X+PlayerBase.ImageWidth"
-					},
-					"isInverted": true
-				},
-				{
-					"id": "is-between-values",
-					"objectClass": "System",
-					"sid": 895693289339192,
-					"disabled": true,
-					"parameters": {
-						"value": "Touch.Y",
-						"lower-bound": "PlayerBase.Y",
-						"upper-bound": "PlayerBase.Y+PlayerBase.ImageHeight"
+						"object": "PlayerBase"
 					},
 					"isInverted": true
 				}
@@ -116,21 +124,102 @@
 			"functionParameters": [],
 			"eventType": "function-block",
 			"conditions": [],
-			"actions": [
+			"actions": [],
+			"sid": 459252184913107,
+			"children": [
 				{
-					"id": "set-function-return-value",
-					"objectClass": "Functions",
-					"sid": 909826576282677,
-					"parameters": {
-						"value": "45*round(angle(PlayerBase.ImagePointX(\"center\"), PlayerBase.ImagePointY(\"center\"), Touch.X, Touch.Y)/45)"
-					}
+					"eventType": "comment",
+					"text": "Active: Angle from player center to touch point, Disabled: Angle from player tile corner to touch tile corner"
+				},
+				{
+					"eventType": "comment",
+					"text": "If changing which active, copy the used formula into condition as well"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 987077501027571,
+							"disabled": true,
+							"parameters": {
+								"first-value": "45*round(angle(PlayerBase.X, PlayerBase.Y, Tile*round(Touch.X/Tile), Tile*round(Touch.Y/Tile))/45)",
+								"comparison": 2,
+								"second-value": "0"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 815915205020285,
+							"parameters": {
+								"first-value": "45*round(angle(PlayerBase.ImagePointX(\"center\"), PlayerBase.ImagePointY(\"center\"), Touch.X, Touch.Y)/45)",
+								"comparison": 2,
+								"second-value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Turn negative angle into positive"
+						},
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 398325752327682,
+							"disabled": true,
+							"parameters": {
+								"value": "360+45*round(angle(PlayerBase.X, PlayerBase.Y, Tile*round(Touch.X/Tile), Tile*round(Touch.Y/Tile))/45)"
+							}
+						},
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 862630329260247,
+							"parameters": {
+								"value": "360+45*round(angle(PlayerBase.ImagePointX(\"center\"), PlayerBase.ImagePointY(\"center\"), Touch.X, Touch.Y)/45)"
+							}
+						}
+					],
+					"sid": 786524730314739
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 868000058903931
+						}
+					],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 934166326394776,
+							"disabled": true,
+							"parameters": {
+								"value": "45*round(angle(PlayerBase.X, PlayerBase.Y, Tile*round(Touch.X/Tile), Tile*round(Touch.Y/Tile))/45)"
+							}
+						},
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 785238125150033,
+							"parameters": {
+								"value": "45*round(angle(PlayerBase.ImagePointX(\"center\"), PlayerBase.ImagePointY(\"center\"), Touch.X, Touch.Y)/45)"
+							}
+						}
+					],
+					"sid": 716558015488218
 				}
-			],
-			"sid": 459252184913107
+			]
 		},
 		{
 			"functionName": "MovePlayerOneTile",
-			"functionDescription": "Move PlayerBase to correct tile",
+			"functionDescription": "Move PlayerBase to correct tile based on angle (0-360)",
 			"functionCategory": "",
 			"functionReturnType": "none",
 			"functionIsAsync": false,
@@ -145,85 +234,74 @@
 			],
 			"eventType": "function-block",
 			"conditions": [],
-			"actions": [],
+			"actions": [
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerBase",
+					"sid": 275279284490143,
+					"parameters": {
+						"instance-variable": "MoveAngle",
+						"value": "moveAngle"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerBase",
+					"sid": 854337544910664,
+					"parameters": {
+						"instance-variable": "MoveX",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerBase",
+					"sid": 770764778146551,
+					"parameters": {
+						"instance-variable": "MoveY",
+						"value": "0"
+					}
+				}
+			],
 			"sid": 339589779955344,
-			"disabled": true,
 			"children": [
-				{
-					"eventType": "variable",
-					"name": "MoveX",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "X to move",
-					"isStatic": false,
-					"isConstant": false,
-					"sid": 312747109672575
-				},
-				{
-					"eventType": "variable",
-					"name": "MoveY",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "Y to move",
-					"isStatic": false,
-					"isConstant": false,
-					"sid": 207180366718225
-				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
 							"id": "compare-two-values",
 							"objectClass": "System",
-							"sid": 279213261526400,
+							"sid": 837947077006302,
 							"parameters": {
-								"first-value": "abs(moveAngle)",
+								"first-value": "abs(PlayerBase.MoveAngle)",
 								"comparison": 3,
 								"second-value": "45"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 810798492293179,
+							"parameters": {
+								"first-value": "abs(PlayerBase.MoveAngle)",
+								"comparison": 5,
+								"second-value": "315"
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 415953201047386,
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 225228227506842,
 							"parameters": {
-								"variable": "MoveX",
+								"instance-variable": "MoveX",
 								"value": "Tile"
 							}
 						}
 					],
-					"sid": 512535869937992,
-					"disabled": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 689559357374816,
-							"parameters": {
-								"first-value": "abs(moveAngle)",
-								"comparison": 5,
-								"second-value": "135"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 496493656184958,
-							"parameters": {
-								"variable": "MoveX",
-								"value": "-Tile"
-							}
-						}
-					],
-					"sid": 412908863833560,
-					"disabled": true
+					"sid": 421688721406560,
+					"isOrBlock": true
 				},
 				{
 					"eventType": "block",
@@ -231,37 +309,9 @@
 						{
 							"id": "is-between-values",
 							"objectClass": "System",
-							"sid": 261768762144513,
+							"sid": 522662724709795,
 							"parameters": {
-								"value": "moveAngle",
-								"lower-bound": "-135",
-								"upper-bound": "-45"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 249310520712490,
-							"parameters": {
-								"variable": "MoveY",
-								"value": "-Tile"
-							}
-						}
-					],
-					"sid": 545688336275469,
-					"disabled": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-between-values",
-							"objectClass": "System",
-							"sid": 583005233028077,
-							"parameters": {
-								"value": "moveAngle",
+								"value": "PlayerBase.MoveAngle",
 								"lower-bound": "45",
 								"upper-bound": "135"
 							}
@@ -269,67 +319,94 @@
 					],
 					"actions": [
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 564284289373013,
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 495203786705672,
 							"parameters": {
-								"variable": "MoveY",
+								"instance-variable": "MoveY",
 								"value": "Tile"
 							}
 						}
 					],
-					"sid": 795471821354401,
-					"disabled": true
+					"sid": 486342918509024
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-between-values",
+							"objectClass": "System",
+							"sid": 969520471534766,
+							"parameters": {
+								"value": "PlayerBase.MoveAngle",
+								"lower-bound": "135",
+								"upper-bound": "225"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 664626713785256,
+							"parameters": {
+								"instance-variable": "MoveX",
+								"value": "-Tile"
+							}
+						}
+					],
+					"sid": 684058582234536
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-between-values",
+							"objectClass": "System",
+							"sid": 810121991545435,
+							"parameters": {
+								"value": "PlayerBase.MoveAngle",
+								"lower-bound": "225",
+								"upper-bound": "315"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 817927228460470,
+							"parameters": {
+								"instance-variable": "MoveY",
+								"value": "-Tile"
+							}
+						}
+					],
+					"sid": 339112512791130
 				},
 				{
 					"eventType": "block",
 					"conditions": [],
 					"actions": [
 						{
-							"id": "set-instvar-value",
+							"id": "set-position",
 							"objectClass": "PlayerBase",
-							"sid": 726519814204321,
+							"sid": 541762153048028,
 							"parameters": {
-								"instance-variable": "MoveX",
-								"value": "MoveX"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "PlayerBase",
-							"sid": 616429110102621,
-							"parameters": {
-								"instance-variable": "MoveY",
-								"value": "MoveY"
-							}
-						},
-						{
-							"id": "set-x",
-							"objectClass": "PlayerBase",
-							"sid": 202112605037758,
-							"parameters": {
-								"x": "PlayerBase.X+MoveX"
-							}
-						},
-						{
-							"id": "set-y",
-							"objectClass": "PlayerBase",
-							"sid": 612888665968409,
-							"parameters": {
-								"y": "PlayerBase.Y+MoveY"
+								"x": "PlayerBase.X + PlayerBase.MoveX",
+								"y": "PlayerBase.Y + PlayerBase.MoveY"
 							}
 						},
 						{
 							"id": "set-text",
-							"objectClass": "TXTcursordistance",
-							"sid": 948872791315774,
+							"objectClass": "TXTmovedistance",
+							"sid": 354059620272526,
 							"parameters": {
-								"text": "MoveX & \", \" &MoveY"
+								"text": "\"Move: \" & PlayerBase.MoveX & \", \" & PlayerBase.MoveY"
 							}
 						}
 					],
-					"sid": 865315964994295,
-					"disabled": true
+					"sid": 865315964994295
 				}
 			]
 		},
@@ -388,122 +465,63 @@
 			"disabled": true
 		},
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-nth-touch-start",
-					"objectClass": "Touch",
-					"sid": 282833575681463,
-					"parameters": {
-						"touch-number": "0"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-position",
-					"objectClass": "CursorTest",
-					"sid": 356992236419418,
-					"parameters": {
-						"x": "floor(Mouse.X/Tile)*Tile",
-						"y": "floor(Mouse.Y/Tile)*Tile"
-					}
-				},
-				{
-					"id": "set-instvar-value",
-					"objectClass": "CursorTest",
-					"sid": 284985818477338,
-					"parameters": {
-						"instance-variable": "OldPos",
-						"value": "Self.X*100+Self.Y"
-					}
-				}
-			],
-			"sid": 397124758940819,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-tile-at",
-							"objectClass": "Collisions",
-							"sid": 865867370109950,
-							"parameters": {
-								"tile-x": "CursorTest.X/Tile",
-								"tile-y": "CursorTest.Y/Tile",
-								"comparison": 1,
-								"tile": "0"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "find-path",
-							"objectClass": "PlayerBase",
-							"sid": 236978669276056,
-							"behaviorType": "Pathfinding",
-							"parameters": {
-								"x": "CursorTest.X",
-								"y": "CursorTest.Y"
-							}
-						}
-					],
-					"sid": 170375689288112
-				}
-			]
+			"eventType": "comment",
+			"text": "Is player's turn"
 		},
 		{
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "has-nth-touch",
-					"objectClass": "Touch",
-					"sid": 679037239251587,
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 261696371567308,
 					"parameters": {
-						"touch-number": "0"
+						"variable": "Turn",
+						"comparison": 0,
+						"value": "0"
 					}
 				}
 			],
-			"actions": [
-				{
-					"id": "set-position",
-					"objectClass": "CursorTest",
-					"sid": 938763259507792,
-					"parameters": {
-						"x": "floor(Mouse.X/Tile)*Tile",
-						"y": "floor(Mouse.Y/Tile)*Tile"
-					}
-				}
-			],
-			"sid": 398368816254872,
+			"actions": [],
+			"sid": 828333175735165,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-instance-variable",
-							"objectClass": "CursorTest",
-							"sid": 396829110296295,
+							"id": "on-nth-touch-start",
+							"objectClass": "Touch",
+							"sid": 662934236082088,
 							"parameters": {
-								"instance-variable": "OldPos",
-								"comparison": 0,
-								"value": "Self.X*100+Self.Y"
-							},
-							"isInverted": true
+								"touch-number": "0"
+							}
 						}
 					],
 					"actions": [
 						{
+							"id": "set-position",
+							"objectClass": "CursorTest",
+							"sid": 833252321741642,
+							"parameters": {
+								"x": "floor(Touch.X/Tile)*Tile",
+								"y": "floor(Touch.Y/Tile)*Tile"
+							}
+						},
+						{
 							"id": "set-instvar-value",
 							"objectClass": "CursorTest",
-							"sid": 688348607274826,
+							"sid": 273160626848461,
 							"parameters": {
 								"instance-variable": "OldPos",
 								"value": "Self.X*100+Self.Y"
 							}
+						},
+						{
+							"callFunction": "SetMoveTile",
+							"sid": 337940777745860
 						}
 					],
-					"sid": 355401809692682,
+					"sid": 436030440843561,
 					"children": [
 						{
 							"eventType": "block",
@@ -511,7 +529,8 @@
 								{
 									"id": "compare-tile-at",
 									"objectClass": "Collisions",
-									"sid": 194945150697273,
+									"sid": 727174526624453,
+									"disabled": true,
 									"parameters": {
 										"tile-x": "CursorTest.X/Tile",
 										"tile-y": "CursorTest.Y/Tile",
@@ -524,7 +543,8 @@
 								{
 									"id": "find-path",
 									"objectClass": "PlayerBase",
-									"sid": 884960800200645,
+									"sid": 328162686212576,
+									"disabled": true,
 									"behaviorType": "Pathfinding",
 									"parameters": {
 										"x": "CursorTest.X",
@@ -532,125 +552,1017 @@
 									}
 								}
 							],
-							"sid": 725284962919784
+							"sid": 818910367197167
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 631424475954339,
+									"parameters": {
+										"first-value": "Functions.GetMoveAngle % 90",
+										"comparison": 0,
+										"second-value": "0"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 937654578369745
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 861084309388130
+								}
+							],
+							"actions": [],
+							"sid": 369272543434348
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "has-nth-touch",
+							"objectClass": "Touch",
+							"sid": 107925486847259,
+							"parameters": {
+								"touch-number": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "CursorTest",
+							"sid": 302290328574678,
+							"parameters": {
+								"x": "floor(Touch.X/Tile)*Tile",
+								"y": "floor(Touch.Y/Tile)*Tile"
+							}
+						},
+						{
+							"callFunction": "SetMoveTile",
+							"sid": 633748858593880
+						}
+					],
+					"sid": 548997852454559,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "CursorTest",
+									"sid": 829614463395031,
+									"parameters": {
+										"instance-variable": "OldPos",
+										"comparison": 0,
+										"value": "Self.X*100+Self.Y"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "CursorTest",
+									"sid": 857954763805381,
+									"parameters": {
+										"instance-variable": "OldPos",
+										"value": "Self.X*100+Self.Y"
+									}
+								}
+							],
+							"sid": 107777160336967,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-tile-at",
+											"objectClass": "Collisions",
+											"sid": 287453025940593,
+											"parameters": {
+												"tile-x": "CursorTest.X/Tile",
+												"tile-y": "CursorTest.Y/Tile",
+												"comparison": 1,
+												"tile": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "find-path",
+											"objectClass": "PlayerBase",
+											"sid": 804681896798091,
+											"disabled": true,
+											"behaviorType": "Pathfinding",
+											"parameters": {
+												"x": "CursorTest.X",
+												"y": "CursorTest.Y"
+											}
+										}
+									],
+									"sid": 294292393012686
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 916549760262124
+										}
+									],
+									"actions": [
+										{
+											"id": "set-position",
+											"objectClass": "MoveTile",
+											"sid": 278216803048988,
+											"parameters": {
+												"x": "-100",
+												"y": "-100"
+											}
+										}
+									],
+									"sid": 981261914853198,
+									"disabled": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "Node",
+											"sid": 199631167988284
+										},
+										{
+											"id": "destroy",
+											"objectClass": "OldMoveTile",
+											"sid": 175897344023248
+										}
+									],
+									"sid": 606188800415255
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-nth-touch-end",
+							"objectClass": "Touch",
+							"sid": 617903927572875,
+							"parameters": {
+								"touch-number": "0"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 909402328549610,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 873036099794400,
+									"parameters": {
+										"first-value": "Functions.CursorDistance",
+										"comparison": 0,
+										"second-value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "PlayerBase",
+									"sid": 199933415733703,
+									"parameters": {
+										"x": "CursorTest.X",
+										"y": "CursorTest.Y"
+									}
+								}
+							],
+							"sid": 560239104708109,
+							"disabled": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-tile-at",
+									"objectClass": "Collisions",
+									"sid": 633394003657063,
+									"parameters": {
+										"tile-x": "CursorTest.X/Tile",
+										"tile-y": "CursorTest.Y/Tile",
+										"comparison": 1,
+										"tile": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "PlayerBase",
+									"sid": 142769047718799,
+									"parameters": {
+										"x": "PlayerBase.X+PlayerBase.MoveX",
+										"y": "PlayerBase.Y+PlayerBase.MoveY"
+									}
+								}
+							],
+							"sid": 915501259422970,
+							"disabled": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-visible",
+									"objectClass": "MoveTile",
+									"sid": 366424807784218
+								},
+								{
+									"id": "is-on-screen",
+									"objectClass": "MoveTile",
+									"sid": 176591594187307
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "MovePlayerOneTile",
+									"sid": 791790015276077,
+									"disabled": true,
+									"parameters": [
+										"Functions.GetMoveAngle"
+									]
+								}
+							],
+							"sid": 654944039098864,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "MoveTile",
+											"sid": 396271006118923,
+											"parameters": {
+												"object": "Enemies"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "subtract-from-instvar",
+											"objectClass": "Enemies",
+											"sid": 255494635038089,
+											"parameters": {
+												"instance-variable": "hp",
+												"value": "PlayerBase.meleeDmg"
+											}
+										},
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 251277583546930,
+											"parameters": {
+												"variable": "Turn",
+												"value": "1"
+											}
+										}
+									],
+									"sid": 860735239364724
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "MoveTile",
+											"sid": 942127840114839,
+											"parameters": {
+												"object": "Enemies"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-position",
+											"objectClass": "PlayerBase",
+											"sid": 824551473036214,
+											"parameters": {
+												"x": "MoveTile.ImagePointX(\"position\")",
+												"y": "MoveTile.ImagePointY(\"position\")"
+											}
+										},
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 443112560074825,
+											"parameters": {
+												"variable": "Turn",
+												"value": "1"
+											}
+										}
+									],
+									"sid": 738036483719086
+								}
+							]
 						},
 						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
 								{
-									"id": "destroy",
-									"objectClass": "Node",
-									"sid": 584140981569736
+									"id": "set-position",
+									"objectClass": "CursorTest",
+									"sid": 273075385048896,
+									"parameters": {
+										"x": "-100",
+										"y": "-100"
+									}
+								},
+								{
+									"id": "set-position",
+									"objectClass": "MoveTile",
+									"sid": 429882277842484,
+									"parameters": {
+										"x": "-100",
+										"y": "-100"
+									}
 								},
 								{
 									"id": "destroy",
-									"objectClass": "Sprite",
-									"sid": 467075043429050
+									"objectClass": "Node",
+									"sid": 478154501443340
+								},
+								{
+									"id": "destroy",
+									"objectClass": "OldMoveTile",
+									"sid": 767639550031899
 								}
 							],
-							"sid": 654123231790241
+							"sid": 912361241978415
 						}
 					]
 				}
 			]
 		},
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-nth-touch-end",
-					"objectClass": "Touch",
-					"sid": 806453431567696,
-					"parameters": {
-						"touch-number": "0"
-					}
-				}
-			],
-			"actions": [],
-			"sid": 286593285220784,
+			"eventType": "group",
+			"disabled": false,
+			"title": "Enemystuff",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-two-values",
+							"id": "on-start-of-layout",
 							"objectClass": "System",
-							"sid": 994011291752601,
-							"parameters": {
-								"first-value": "Functions.CursorDistance",
-								"comparison": 0,
-								"second-value": "1"
-							}
+							"sid": 936863612355426
 						}
 					],
 					"actions": [
 						{
-							"id": "set-position",
-							"objectClass": "PlayerBase",
-							"sid": 118220842060798,
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 922170123191975,
 							"parameters": {
-								"x": "CursorTest.X",
-								"y": "CursorTest.Y"
+								"variable": "EnemiesSeen",
+								"value": "0"
 							}
 						}
 					],
-					"sid": 802742404822653,
-					"disabled": true
+					"sid": 870513935404942,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each-ordered",
+									"objectClass": "System",
+									"sid": 483742929613124,
+									"parameters": {
+										"object": "Enemies",
+										"expression": "Enemies.UID",
+										"order": "ascending"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 345928748310967,
+									"parameters": {
+										"variable": "EnemiesSeen",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 848671675891505
+						}
+					]
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-tile-at",
-							"objectClass": "Collisions",
-							"sid": 922700233555278,
+							"id": "compare-instance-variable",
+							"objectClass": "Enemies",
+							"sid": 148331357098554,
 							"parameters": {
-								"tile-x": "CursorTest.X/Tile",
-								"tile-y": "CursorTest.Y/Tile",
-								"comparison": 1,
-								"tile": "0"
+								"instance-variable": "hp",
+								"comparison": 3,
+								"value": "0"
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "set-position",
-							"objectClass": "PlayerBase",
-							"sid": 741104234308140,
+							"id": "destroy",
+							"objectClass": "Enemies",
+							"sid": 577925582543405
+						},
+						{
+							"id": "subtract-from-eventvar",
+							"objectClass": "System",
+							"sid": 437609264424827,
 							"parameters": {
-								"x": "PlayerBase.X+PlayerBase.MoveX",
-								"y": "PlayerBase.Y+PlayerBase.MoveY"
+								"variable": "EnemiesSeen",
+								"value": "1"
 							}
+						},
+						{
+							"callFunction": "DisplayEnemyData",
+							"sid": 284599482004756
 						}
 					],
-					"sid": 634463574876361
+					"sid": 855078279759255
 				},
 				{
 					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 802703985109428,
+							"parameters": {
+								"variable": "Turn",
+								"comparison": 4,
+								"value": "0"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 920222825931846
+						}
+					],
+					"actions": [],
+					"sid": 131937769376269,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 254924940466945,
+									"parameters": {
+										"variable": "EnemiesSeen",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 272345187440589,
+									"parameters": {
+										"variable": "Turn",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 356861018780192
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each-ordered",
+									"objectClass": "System",
+									"sid": 844614552061159,
+									"parameters": {
+										"object": "Enemies",
+										"expression": "Enemies.UID",
+										"order": "ascending"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Enemies",
+									"sid": 205969904382868,
+									"parameters": {
+										"instance-variable": "TurnOrder",
+										"value": "1+loopindex"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "Enemies",
+									"sid": 998563843359064,
+									"parameters": {
+										"instance-variable": "LastInTurn",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 685250669735273,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Enemies",
+											"sid": 465343348612768,
+											"parameters": {
+												"instance-variable": "TurnOrder",
+												"comparison": 0,
+												"value": "EnemiesSeen"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Enemies",
+											"sid": 578480629432919,
+											"parameters": {
+												"instance-variable": "LastInTurn",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 161132457769804
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "DisplayEnemyData",
+									"sid": 864118959975175
+								}
+							],
+							"sid": 639135279516135
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "EnemyTest",
+							"sid": 549574998305251,
+							"parameters": {
+								"instance-variable": "TurnOrder",
+								"comparison": 0,
+								"value": "Turn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-instvar",
+							"objectClass": "EnemyTest",
+							"sid": 925611588403108,
+							"parameters": {
+								"instance-variable": "MoveTick",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 595503818179515,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "EnemyTest",
+									"sid": 121953470864473,
+									"parameters": {
+										"instance-variable": "MoveTick",
+										"comparison": 5,
+										"value": "Self.MoveTime"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 303940709828941,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "EnemyTest",
+											"sid": 993754574565827,
+											"parameters": {
+												"instance-variable": "MoveUp"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-y",
+											"objectClass": "EnemyTest",
+											"sid": 841738261968798,
+											"parameters": {
+												"y": "Self.Y-Tile"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "EnemyTest",
+											"sid": 804023372821581,
+											"parameters": {
+												"instance-variable": "MoveTick",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 587991923591720
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 893682586691418
+										}
+									],
+									"actions": [
+										{
+											"id": "set-y",
+											"objectClass": "EnemyTest",
+											"sid": 451728587523580,
+											"parameters": {
+												"y": "Self.Y+Tile"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "EnemyTest",
+											"sid": 379884448667590,
+											"parameters": {
+												"instance-variable": "MoveTick",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 832777764624797
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "toggle-boolean-instvar",
+											"objectClass": "EnemyTest",
+											"sid": 738954723944322,
+											"parameters": {
+												"instance-variable": "MoveUp"
+											}
+										}
+									],
+									"sid": 539469955868096
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "EnemyTest",
+									"sid": 703490406088401,
+									"parameters": {
+										"instance-variable": "LastInTurn"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 811579710562110,
+									"parameters": {
+										"variable": "Turn",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 717115579524059
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 197932671760018
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 418380055535741,
+									"parameters": {
+										"variable": "Turn",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 567347424276722
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "DisplayEnemyData",
+									"sid": 343662624233407
+								}
+							],
+							"sid": 101420948828935
+						}
+					]
+				},
+				{
+					"functionName": "DisplayEnemyData",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
 						{
-							"id": "set-position",
-							"objectClass": "CursorTest",
-							"sid": 642906434353882,
+							"id": "set-text",
+							"objectClass": "TXTturn",
+							"sid": 639217446155159,
 							"parameters": {
-								"x": "-100",
-								"y": "-100"
+								"text": "\"Turn \" & Turn"
 							}
 						},
 						{
 							"id": "destroy",
-							"objectClass": "Node",
-							"sid": 837621588342605
-						},
-						{
-							"id": "destroy",
-							"objectClass": "Sprite",
-							"sid": 542154197037870
+							"objectClass": "TXTenemydata",
+							"sid": 799375600451738
 						}
 					],
-					"sid": 395600131852210
+					"sid": 616512461594316,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each-ordered",
+									"objectClass": "System",
+									"sid": 253111672559022,
+									"parameters": {
+										"object": "Enemies",
+										"expression": "Enemies.UID",
+										"order": "ascending"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "spawn-another-object",
+									"objectClass": "Enemies",
+									"sid": 160474473429696,
+									"parameters": {
+										"object": "TXTenemydata",
+										"layer": "0",
+										"image-point": "0"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "TXTenemydata",
+									"sid": 226314712878049,
+									"parameters": {
+										"text": "Enemies.hp & \"/\" & Enemies.maxhp & \"  \" & Enemies.TurnOrder"
+									}
+								},
+								{
+									"id": "append-text",
+									"objectClass": "TXTturn",
+									"sid": 453390855522134,
+									"parameters": {
+										"text": "\"*\""
+									}
+								}
+							],
+							"sid": 679495290151275,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Enemies",
+											"sid": 475987545366331,
+											"parameters": {
+												"instance-variable": "TurnOrder",
+												"comparison": 0,
+												"value": "EnemiesSeen"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "append-text",
+											"objectClass": "TXTenemydata",
+											"sid": 316533291535576,
+											"parameters": {
+												"text": "\"*\""
+											}
+										}
+									],
+									"sid": 250641656180085
+								}
+							]
+						}
+					]
+				}
+			],
+			"sid": 644518905920326
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "MoveTile",
+					"sid": 591983212937836,
+					"parameters": {
+						"object": "Collisions"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 831637292953610,
+					"parameters": {
+						"object": "PlayerBase"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-visible",
+					"objectClass": "MoveTile",
+					"sid": 208259699717056,
+					"parameters": {
+						"visibility": "visible"
+					}
+				}
+			],
+			"sid": 440202268528058
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 612026573001912
+				}
+			],
+			"actions": [
+				{
+					"id": "set-visible",
+					"objectClass": "MoveTile",
+					"sid": 942078315413773,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				}
+			],
+			"sid": 708076754147661
+		},
+		{
+			"functionName": "SetMoveTile",
+			"functionDescription": "Sets the MoveTile object to the tile the PlayerBase moves to on touch release",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-position",
+					"objectClass": "MoveTile",
+					"sid": 429092487363977,
+					"parameters": {
+						"x": "PlayerBase.X",
+						"y": "PlayerBase.Y"
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "MoveTile",
+					"sid": 857367369166171,
+					"parameters": {
+						"frame-number": "Functions.GetMoveAngle/45"
+					}
+				}
+			],
+			"sid": 373425752336578,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-visible",
+							"objectClass": "MoveTile",
+							"sid": 546616034432794
+						},
+						{
+							"id": "is-on-screen",
+							"objectClass": "MoveTile",
+							"sid": 786628101451795
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "TXTmovetiledata",
+							"sid": 790284066409212,
+							"parameters": {
+								"text": "\"MoveTile \" & MoveTile.AnimationFrame"
+							}
+						}
+					],
+					"sid": 852701339940361
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 869572658710052
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "TXTmovetiledata",
+							"sid": 288508121414349,
+							"parameters": {
+								"text": "\"MoveTile Off\""
+							}
+						}
+					],
+					"sid": 353669027095734
 				}
 			]
 		},
@@ -671,9 +1583,9 @@
 				{
 					"id": "set-text",
 					"objectClass": "TXTcursordistance",
-					"sid": 393959000601213,
+					"sid": 895551077578967,
 					"parameters": {
-						"text": "abs((CursorTest.X-PlayerBase.X)/Tile) & \", \" & abs((CursorTest.Y-PlayerBase.Y)/Tile) & \": \" & max(abs((CursorTest.X-PlayerBase.X)/Tile), abs((CursorTest.Y-PlayerBase.Y)/Tile))"
+						"text": "\"CursorDist \" &\nabs((CursorTest.X-PlayerBase.X)/Tile) & \", \" &\nabs((CursorTest.Y-PlayerBase.Y)/Tile) & \": \" &\nmax(abs((CursorTest.X-PlayerBase.X)/Tile), abs((CursorTest.Y-PlayerBase.Y)/Tile))"
 					}
 				},
 				{
@@ -737,8 +1649,9 @@
 			"actions": [
 				{
 					"id": "set-text",
-					"objectClass": "TXTtiledistance",
+					"objectClass": "TXTmovedistance",
 					"sid": 398277617406924,
+					"disabled": true,
 					"parameters": {
 						"text": "abs((CursorTest.X-PlayerBase.X)/Tile) & \", \" & abs((CursorTest.Y-PlayerBase.Y)/Tile) & \": \" & max(abs((CursorTest.X-PlayerBase.X)/Tile), abs((CursorTest.Y-PlayerBase.Y)/Tile))"
 					}
@@ -825,7 +1738,7 @@
 					"objectClass": "System",
 					"sid": 276701768542860,
 					"parameters": {
-						"object-to-create": "Sprite2",
+						"object-to-create": "PfPing",
 						"layer": "\"Layer 0\"",
 						"x": "PlayerBase.Pathfinding.NodeXAt(PlayerBase.Pathfinding.NodeCount-1)",
 						"y": "PlayerBase.Pathfinding.NodeYAt(PlayerBase.Pathfinding.NodeCount-1)"
@@ -833,6 +1746,7 @@
 				}
 			],
 			"sid": 447887303418001,
+			"disabled": true,
 			"children": [
 				{
 					"eventType": "block",
@@ -870,6 +1784,7 @@
 						}
 					],
 					"sid": 663303559204714,
+					"disabled": true,
 					"isOrBlock": true
 				},
 				{
@@ -897,7 +1812,8 @@
 							}
 						}
 					],
-					"sid": 237603628780934
+					"sid": 237603628780934,
+					"disabled": true
 				},
 				{
 					"eventType": "block",
@@ -924,7 +1840,8 @@
 							}
 						}
 					],
-					"sid": 489215945725459
+					"sid": 489215945725459,
+					"disabled": true
 				},
 				{
 					"eventType": "block",
@@ -951,7 +1868,8 @@
 							}
 						}
 					],
-					"sid": 935729709613697
+					"sid": 935729709613697,
+					"disabled": true
 				},
 				{
 					"eventType": "block",
@@ -971,7 +1889,7 @@
 					"actions": [
 						{
 							"id": "set-text",
-							"objectClass": "TXTtiledistance",
+							"objectClass": "TXTmovedistance",
 							"sid": 965699643504224,
 							"parameters": {
 								"text": "\"Move: \" & PlayerBase.MoveX & \", \" & PlayerBase.MoveY"
@@ -982,14 +1900,15 @@
 							"objectClass": "System",
 							"sid": 647231289517657,
 							"parameters": {
-								"object-to-create": "Sprite",
+								"object-to-create": "OldMoveTile",
 								"layer": "0",
 								"x": "PlayerBase.X+PlayerBase.MoveX",
 								"y": "PlayerBase.Y+PlayerBase.MoveY"
 							}
 						}
 					],
-					"sid": 165160204067175
+					"sid": 165160204067175,
+					"disabled": true
 				},
 				{
 					"eventType": "comment",
@@ -1024,7 +1943,7 @@
 							"objectClass": "System",
 							"sid": 661852967242011,
 							"parameters": {
-								"object-to-create": "Sprite",
+								"object-to-create": "OldMoveTile",
 								"layer": "\"Layer 0\"",
 								"x": "floor(PlayerBase.Pathfinding.NodeXAt(loopindex)/Tile)*Tile",
 								"y": "floor(PlayerBase.Pathfinding.NodeYAt(loopindex)/Tile)*Tile"
@@ -1032,7 +1951,6 @@
 						}
 					],
 					"sid": 446868255458504,
-					"disabled": true,
 					"children": [
 						{
 							"eventType": "comment",
@@ -1062,8 +1980,7 @@
 									}
 								}
 							],
-							"sid": 203779515300275,
-							"disabled": true
+							"sid": 203779515300275
 						},
 						{
 							"eventType": "comment",
@@ -1089,8 +2006,7 @@
 									}
 								}
 							],
-							"sid": 149017256306654,
-							"disabled": true
+							"sid": 149017256306654
 						}
 					]
 				}
@@ -1126,14 +2042,14 @@
 			"conditions": [
 				{
 					"id": "on-any-animation-finished",
-					"objectClass": "Sprite2",
+					"objectClass": "PfPing",
 					"sid": 960075455258641
 				}
 			],
 			"actions": [
 				{
 					"id": "destroy",
-					"objectClass": "Sprite2",
+					"objectClass": "PfPing",
 					"sid": 454932853218918
 				}
 			],
