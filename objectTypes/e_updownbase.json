@@ -1,53 +1,17 @@
 {
-	"name": "PlayerBase",
+	"name": "E_UpDownBase",
 	"plugin-id": "Sprite",
-	"sid": 645735548878440,
+	"sid": 310314534150353,
 	"isGlobal": false,
 	"instanceVariables": [
 		{
-			"name": "MoveX",
-			"type": "number",
-			"desc": "X to move to",
-			"sid": 636931300626041
-		},
-		{
-			"name": "MoveY",
-			"type": "number",
-			"desc": "X to move to",
-			"sid": 682106462273991
-		},
-		{
-			"name": "MoveAngle",
-			"type": "number",
-			"desc": "Angle to move",
-			"sid": 125893066774733
-		},
-		{
-			"name": "meleeDmg",
-			"type": "number",
-			"desc": "Damage dealt by moving into enemy",
-			"sid": 443907064233033
-		},
-		{
-			"name": "maxhp",
-			"type": "number",
-			"desc": "",
-			"sid": 872372472324457
-		},
-		{
-			"name": "hp",
-			"type": "number",
-			"desc": "",
-			"sid": 746376378517428
+			"name": "MoveUp",
+			"type": "boolean",
+			"desc": "Direction of movement",
+			"sid": 286381331025284
 		}
 	],
-	"behaviorTypes": [
-		{
-			"behaviorId": "Pathfinding",
-			"name": "Pathfinding",
-			"sid": 875123936108729
-		}
-	],
+	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
@@ -61,7 +25,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 6845441,
+						"imageSpriteId": 2861506,
 						"collisionPoly": {
 							"points": [
 								0.05,
@@ -93,7 +57,7 @@
 						"duration": 1
 					}
 				],
-				"sid": 926940309188685,
+				"sid": 895321266804140,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

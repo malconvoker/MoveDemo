@@ -1,28 +1,9 @@
 {
-	"name": "EnemyTest",
+	"name": "E_SlowChaseBase",
 	"plugin-id": "Sprite",
-	"sid": 310314534150353,
+	"sid": 187598407422243,
 	"isGlobal": false,
-	"instanceVariables": [
-		{
-			"name": "MoveUp",
-			"type": "boolean",
-			"desc": "Direction of movement",
-			"sid": 286381331025284
-		},
-		{
-			"name": "MoveTime",
-			"type": "number",
-			"desc": "Number of turns required to move",
-			"sid": 920457919647190
-		},
-		{
-			"name": "MoveTick",
-			"type": "number",
-			"desc": "Ticks up by one every turn",
-			"sid": 620277403609450
-		}
-	],
+	"instanceVariables": [],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
@@ -37,12 +18,39 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 3578149,
+						"imageSpriteId": 9385204,
+						"collisionPoly": {
+							"points": [
+								0.05,
+								0.05,
+								0.5,
+								0.05,
+								0.95,
+								0.05,
+								0.95,
+								0.5,
+								0.95,
+								0.95,
+								0.5,
+								0.95,
+								0.05,
+								0.95,
+								0.05,
+								0.5
+							]
+						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "center",
+								"x": 0.5,
+								"y": 0.5
+							}
+						],
 						"duration": 1
 					}
 				],
-				"sid": 895321266804140,
+				"sid": 482872983148220,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

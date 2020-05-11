@@ -3,10 +3,10 @@
 	"events": [
 		{
 			"eventType": "variable",
-			"name": "EnemiesSeen",
+			"name": "EnemiesActive",
 			"type": "number",
 			"initialValue": "0",
-			"comment": "Number of enemies in sight",
+			"comment": "Number of enemies on the layout",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 408307394080193
@@ -16,7 +16,7 @@
 			"name": "Turn",
 			"type": "number",
 			"initialValue": "0",
-			"comment": "The character whose turn it is, 0 being the player",
+			"comment": "The character whose turn it is, 0=player",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 366931827467546
@@ -55,6 +55,15 @@
 					"id": "add-obstacle",
 					"objectClass": "PlayerBase",
 					"sid": 503223568768943,
+					"behaviorType": "Pathfinding",
+					"parameters": {
+						"obstacle": "Collisions"
+					}
+				},
+				{
+					"id": "add-obstacle",
+					"objectClass": "EnemyBases",
+					"sid": 780379650662781,
 					"behaviorType": "Pathfinding",
 					"parameters": {
 						"obstacle": "Collisions"

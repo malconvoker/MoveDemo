@@ -1,0 +1,61 @@
+{
+	"name": "EnemyBases",
+	"plugin-id": "Sprite",
+	"sid": 988434271577437,
+	"instanceVariables": [
+		{
+			"name": "TurnOrder",
+			"type": "number",
+			"desc": "Which Turn number this enemy uses",
+			"sid": 737008300003913
+		},
+		{
+			"name": "LastInTurn",
+			"type": "boolean",
+			"desc": "Is this enemy the last in the turn order",
+			"sid": 166223235215109
+		},
+		{
+			"name": "ActThreshold",
+			"type": "number",
+			"desc": "How many \"idle\" turns required to do action",
+			"sid": 222280585411326
+		},
+		{
+			"name": "ActTime",
+			"type": "number",
+			"desc": "Number of turns spent preparing for action",
+			"sid": 672932301266524
+		},
+		{
+			"name": "TurnDone",
+			"type": "boolean",
+			"desc": "Is the enemy done with their turn",
+			"sid": 408808042187170
+		},
+		{
+			"name": "maxhp",
+			"type": "number",
+			"desc": "",
+			"sid": 982051028609051
+		},
+		{
+			"name": "hp",
+			"type": "number",
+			"desc": "",
+			"sid": 465482436761383
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Pathfinding",
+			"name": "Pathfinding",
+			"sid": 625310327085603
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"E_UpDownBase",
+		"E_SlowChaseBase"
+	]
+}

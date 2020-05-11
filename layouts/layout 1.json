@@ -299,7 +299,9 @@
 						"MoveX": 0,
 						"MoveY": 0,
 						"MoveAngle": 0,
-						"meleeDmg": 1
+						"meleeDmg": 1,
+						"maxhp": 5,
+						"hp": 5
 					},
 					"behaviors": {
 						"Pathfinding": {
@@ -338,7 +340,7 @@
 					"type": "PlayerMask",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "New",
+						"initial-animation": "front",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -539,7 +541,7 @@
 					}
 				},
 				{
-					"type": "EnemyTest",
+					"type": "E_UpDownBase",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Animation 1",
@@ -551,13 +553,29 @@
 					"instanceVariables": {
 						"TurnOrder": 1,
 						"LastInTurn": false,
+						"ActThreshold": 1,
+						"ActTime": 0,
+						"TurnDone": false,
 						"maxhp": 2,
 						"hp": 2,
-						"MoveUp": true,
-						"MoveTime": 2,
-						"MoveTick": 0
+						"MoveUp": true
 					},
-					"behaviors": {},
+					"behaviors": {
+						"Pathfinding": {
+							"properties": {
+								"cell-size": 20,
+								"cell-border": -1,
+								"obstacles": "custom",
+								"max-speed": 200,
+								"acceleration": 1000,
+								"deceleration": 2000,
+								"rotate-speed": 135,
+								"rotate-object": false,
+								"diagonals": true,
+								"enabled": true
+							}
+						}
+					},
 					"world": {
 						"x": 40,
 						"y": 200,
@@ -634,7 +652,7 @@
 					"world": {
 						"x": 20,
 						"y": -20,
-						"width": 40,
+						"width": 60,
 						"height": 20,
 						"originX": 0,
 						"originY": 1,
@@ -649,7 +667,7 @@
 					}
 				},
 				{
-					"type": "EnemyTest",
+					"type": "E_UpDownBase",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Animation 1",
@@ -661,17 +679,273 @@
 					"instanceVariables": {
 						"TurnOrder": 1,
 						"LastInTurn": false,
+						"ActThreshold": 1,
+						"ActTime": 0,
+						"TurnDone": false,
 						"maxhp": 2,
 						"hp": 2,
-						"MoveUp": true,
-						"MoveTime": 2,
-						"MoveTick": 0
+						"MoveUp": true
 					},
+					"behaviors": {
+						"Pathfinding": {
+							"properties": {
+								"cell-size": 20,
+								"cell-border": -1,
+								"obstacles": "custom",
+								"max-speed": 200,
+								"acceleration": 1000,
+								"deceleration": 2000,
+								"rotate-speed": 135,
+								"rotate-object": false,
+								"diagonals": true,
+								"enabled": true
+							}
+						}
+					},
+					"world": {
+						"x": 60,
+						"y": 120,
+						"width": 20,
+						"height": 20,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "E_SlowChaseBase",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 19,
+					"instanceVariables": {
+						"TurnOrder": 1,
+						"LastInTurn": false,
+						"ActThreshold": 1,
+						"ActTime": 0,
+						"TurnDone": false,
+						"maxhp": 2,
+						"hp": 2
+					},
+					"behaviors": {
+						"Pathfinding": {
+							"properties": {
+								"cell-size": 20,
+								"cell-border": -1,
+								"obstacles": "custom",
+								"max-speed": 200,
+								"acceleration": 1000,
+								"deceleration": 2000,
+								"rotate-speed": 135,
+								"rotate-object": false,
+								"diagonals": true,
+								"enabled": true
+							}
+						}
+					},
+					"world": {
+						"x": 300,
+						"y": 100,
+						"width": 20,
+						"height": 20,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "E_SlowChaseBase",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 20,
+					"instanceVariables": {
+						"TurnOrder": 1,
+						"LastInTurn": false,
+						"ActThreshold": 1,
+						"ActTime": 0,
+						"TurnDone": false,
+						"maxhp": 2,
+						"hp": 2
+					},
+					"behaviors": {
+						"Pathfinding": {
+							"properties": {
+								"cell-size": 20,
+								"cell-border": -1,
+								"obstacles": "custom",
+								"max-speed": 200,
+								"acceleration": 1000,
+								"deceleration": 2000,
+								"rotate-speed": 135,
+								"rotate-object": false,
+								"diagonals": true,
+								"enabled": true
+							}
+						}
+					},
+					"world": {
+						"x": 280,
+						"y": 40,
+						"width": 20,
+						"height": 20,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "E_SlowChaseBase",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 21,
+					"instanceVariables": {
+						"TurnOrder": 1,
+						"LastInTurn": false,
+						"ActThreshold": 1,
+						"ActTime": 0,
+						"TurnDone": false,
+						"maxhp": 2,
+						"hp": 2
+					},
+					"behaviors": {
+						"Pathfinding": {
+							"properties": {
+								"cell-size": 20,
+								"cell-border": -1,
+								"obstacles": "custom",
+								"max-speed": 200,
+								"acceleration": 1000,
+								"deceleration": 2000,
+								"rotate-speed": 135,
+								"rotate-object": false,
+								"diagonals": true,
+								"enabled": true
+							}
+						}
+					},
+					"world": {
+						"x": 40,
+						"y": 40,
+						"width": 20,
+						"height": 20,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "TXThp",
+					"properties": {
+						"text": "#/#",
+						"enable-bbcode": true,
+						"font": "Arial",
+						"size": 8,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							0,
+							0,
+							0,
+							1
+						],
+						"horizontal-alignment": "left",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "top-left"
+					},
+					"uid": 22,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 0,
+						"y": 100,
+						"width": 120,
+						"height": 20,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "TXTerrors",
+					"properties": {
+						"text": "Err:",
+						"enable-bbcode": true,
+						"font": "Arial",
+						"size": 8,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							0,
+							0,
+							0,
+							1
+						],
+						"horizontal-alignment": "left",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "top-left"
+					},
+					"uid": 23,
+					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
 						"x": 120,
-						"y": 220,
-						"width": 20,
+						"y": 0,
+						"width": 300,
 						"height": 20,
 						"originX": 0,
 						"originY": 0,

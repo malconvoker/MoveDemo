@@ -16,6 +16,14 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Text",
+			"name": "Text",
+			"author": "Scirra",
+			"version": "r197.2",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Tilemap",
 			"name": "Tilemap",
 			"author": "Scirra",
@@ -31,9 +39,9 @@
 			"bundled": false
 		},
 		{
-			"type": "plugin",
-			"id": "Text",
-			"name": "Text",
+			"type": "behavior",
+			"id": "Pathfinding",
+			"name": "Pathfinding",
 			"author": "Scirra",
 			"version": "r197.2",
 			"bundled": false
@@ -45,45 +53,85 @@
 			"author": "Scirra",
 			"version": "r197.2",
 			"bundled": false
-		},
-		{
-			"type": "behavior",
-			"id": "Pathfinding",
-			"name": "Pathfinding",
-			"author": "Scirra",
-			"version": "r197.2",
-			"bundled": false
 		}
 	],
 	"uniqueId": "0q5jywda9ru",
 	"objectTypes": {
 		"items": [
-			"PlayerMask",
 			"TMdefault",
-			"PlayerBase",
-			"CursorTest",
 			"Touch",
-			"TXTcursorangle",
-			"TXTcursordistance",
 			"Node",
-			"CollisionSprite",
-			"TXTmovedistance",
 			"Collisions",
-			"OldMoveTile",
-			"PfPing",
-			"TXTmovetiledata",
-			"MoveTile",
-			"TXTturn",
-			"EnemyTest",
-			"TXTenemydata"
+			"PfPing"
 		],
-		"subfolders": []
+		"subfolders": [
+			{
+				"items": [
+					"E_SlowChaseBase",
+					"E_SlowChaseMask",
+					"E_UpDownBase",
+					"E_UpDownMask",
+					"EnemyMoveTile"
+				],
+				"subfolders": [],
+				"name": "Enemies"
+			},
+			{
+				"items": [
+					"PlayerBase",
+					"PlayerMask",
+					"MoveTile",
+					"CursorTest"
+				],
+				"subfolders": [],
+				"name": "Player"
+			},
+			{
+				"items": [
+					"TXTcursorangle",
+					"TXTcursordistance",
+					"TXTenemydata",
+					"TXTmovedistance",
+					"TXTmovetiledata",
+					"TXTturn",
+					"TXThp",
+					"TXTerrors"
+				],
+				"subfolders": [],
+				"name": "DebugText"
+			},
+			{
+				"items": [
+					"CollisionSprite",
+					"OldMoveTile"
+				],
+				"subfolders": [],
+				"name": "Deprecated"
+			}
+		]
 	},
 	"autosaveData": null,
-	"containers": [],
+	"containers": [
+		{
+			"members": [
+				"E_UpDownBase",
+				"E_UpDownMask"
+			],
+			"selectMode": "normal"
+		},
+		{
+			"members": [
+				"E_SlowChaseBase",
+				"E_SlowChaseMask",
+				"EnemyMoveTile"
+			],
+			"selectMode": "normal"
+		}
+	],
 	"families": {
 		"items": [
-			"Enemies"
+			"EnemyBases",
+			"EnemyMasks"
 		],
 		"subfolders": []
 	},
@@ -95,8 +143,11 @@
 	},
 	"eventSheets": {
 		"items": [
-			"Event sheet 1",
-			"Global"
+			"Game",
+			"Global",
+			"Functions",
+			"Enemies",
+			"Player"
 		],
 		"subfolders": []
 	},
@@ -177,7 +228,7 @@
 	},
 	"properties": {
 		"description": "Team Iron Move Demo",
-		"version": "0.1.0",
+		"version": "0.2.0",
 		"author": "Malconvoker",
 		"authorEmail": "",
 		"authorWebsite": "",

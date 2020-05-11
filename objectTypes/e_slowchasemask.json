@@ -1,16 +1,10 @@
 {
-	"name": "PlayerMask",
+	"name": "E_SlowChaseMask",
 	"plugin-id": "Sprite",
-	"sid": 528459880737709,
+	"sid": 876806656388237,
 	"isGlobal": false,
 	"instanceVariables": [],
-	"behaviorTypes": [
-		{
-			"behaviorId": "Flash",
-			"name": "Flash",
-			"sid": 806619311022881
-		}
-	],
+	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
@@ -24,30 +18,7 @@
 						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 8941099,
-						"useCollisionPoly": true,
-						"duration": 1
-					}
-				],
-				"sid": 427367392702679,
-				"name": "front",
-				"isLooping": true,
-				"isPingPong": false,
-				"repeatCount": 1,
-				"repeatTo": 0,
-				"speed": 4
-			},
-			{
-				"frames": [
-					{
-						"width": 16,
-						"height": 20,
-						"originX": 0.5,
-						"originY": 0.8,
-						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr3.png",
-						"exportFormat": "png",
-						"exportQuality": 0.8,
-						"imageSpriteId": 5645340,
+						"imageSpriteId": 2422047,
 						"collisionPoly": {
 							"points": [
 								0,
@@ -72,36 +43,13 @@
 						"duration": 1
 					}
 				],
-				"sid": 473626164000417,
-				"name": "left",
-				"isLooping": true,
+				"sid": 899667669519507,
+				"name": "New",
+				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
 				"repeatTo": 0,
-				"speed": 4
-			},
-			{
-				"frames": [
-					{
-						"width": 16,
-						"height": 20,
-						"originX": 0.5,
-						"originY": 0.8,
-						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr2.png",
-						"exportFormat": "png",
-						"exportQuality": 0.8,
-						"imageSpriteId": 8829596,
-						"useCollisionPoly": true,
-						"duration": 1
-					}
-				],
-				"sid": 910953779644142,
-				"name": "right",
-				"isLooping": true,
-				"isPingPong": false,
-				"repeatCount": 1,
-				"repeatTo": 0,
-				"speed": 4
+				"speed": 5
 			},
 			{
 				"frames": [
@@ -113,7 +61,7 @@
 						"originalSource": "C:\\Users\\mctur\\Desktop\\Files\\Luotsaamo\\Level 4\\LailaConcept.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 2946310,
+						"imageSpriteId": 1544738,
 						"collisionPoly": {
 							"points": [
 								0,
@@ -138,7 +86,7 @@
 						"duration": 1
 					}
 				],
-				"sid": 808525003682823,
+				"sid": 736994604745013,
 				"name": "Old",
 				"isLooping": false,
 				"isPingPong": false,
