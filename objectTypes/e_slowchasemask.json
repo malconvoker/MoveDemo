@@ -12,13 +12,13 @@
 				"frames": [
 					{
 						"width": 16,
-						"height": 20,
+						"height": 22,
 						"originX": 0.5,
-						"originY": 0.8,
+						"originY": 0.7272727272727273,
 						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 2422047,
+						"imageSpriteId": 1714067,
 						"collisionPoly": {
 							"points": [
 								0,
@@ -28,40 +28,29 @@
 								1,
 								0,
 								1,
+								0.9090909090909091,
 								1,
+								0.9090909090909091,
 								1,
-								1,
-								1,
-								1,
+								0.9090909090909091,
 								0,
-								1,
+								0.9090909090909091,
 								0,
-								1
+								0.9090909090909091
 							]
 						},
 						"useCollisionPoly": true,
 						"duration": 1
-					}
-				],
-				"sid": 899667669519507,
-				"name": "New",
-				"isLooping": false,
-				"isPingPong": false,
-				"repeatCount": 1,
-				"repeatTo": 0,
-				"speed": 5
-			},
-			{
-				"frames": [
+					},
 					{
 						"width": 16,
-						"height": 20,
+						"height": 22,
 						"originX": 0.5,
-						"originY": 0.8,
-						"originalSource": "C:\\Users\\mctur\\Desktop\\Files\\Luotsaamo\\Level 4\\LailaConcept.png",
+						"originY": 0.7272727272727273,
+						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 1544738,
+						"imageSpriteId": 7744811,
 						"collisionPoly": {
 							"points": [
 								0,
@@ -71,28 +60,28 @@
 								1,
 								0,
 								1,
+								0.9090909090909091,
 								1,
+								0.9090909090909091,
 								1,
-								1,
-								1,
-								1,
+								0.9090909090909091,
 								0,
-								1,
+								0.9090909090909091,
 								0,
-								1
+								0.9090909090909091
 							]
 						},
 						"useCollisionPoly": true,
 						"duration": 1
 					}
 				],
-				"sid": 736994604745013,
-				"name": "Old",
-				"isLooping": false,
+				"sid": 160819040575090,
+				"name": "Animation 1",
+				"isLooping": true,
 				"isPingPong": false,
 				"repeatCount": 1,
 				"repeatTo": 0,
-				"speed": 5
+				"speed": 2
 			}
 		],
 		"subfolders": []

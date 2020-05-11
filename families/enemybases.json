@@ -16,16 +16,22 @@
 			"sid": 166223235215109
 		},
 		{
-			"name": "ActThreshold",
-			"type": "number",
-			"desc": "How many \"idle\" turns required to do action",
-			"sid": 222280585411326
-		},
-		{
 			"name": "ActTime",
 			"type": "number",
 			"desc": "Number of turns spent preparing for action",
 			"sid": 672932301266524
+		},
+		{
+			"name": "ActThMove",
+			"type": "number",
+			"desc": "Threshhold for \"idle\" turns required to move",
+			"sid": 222280585411326
+		},
+		{
+			"name": "ActThAttack",
+			"type": "number",
+			"desc": "Threshhold for \"idle\" turns required to attack",
+			"sid": 293093181967551
 		},
 		{
 			"name": "TurnDone",
@@ -44,6 +50,12 @@
 			"type": "number",
 			"desc": "",
 			"sid": 465482436761383
+		},
+		{
+			"name": "meleeDmg",
+			"type": "number",
+			"desc": "Damage dealt by moving into player",
+			"sid": 487102875257544
 		}
 	],
 	"behaviorTypes": [

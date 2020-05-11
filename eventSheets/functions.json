@@ -22,23 +22,13 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-between-values",
+							"id": "compare-two-values",
 							"objectClass": "System",
-							"sid": 122181089482186,
+							"sid": 531023436382516,
 							"parameters": {
-								"value": "CursorTest.X",
-								"lower-bound": "PlayerBase.X-Tile",
-								"upper-bound": "PlayerBase.X+Tile"
-							}
-						},
-						{
-							"id": "is-between-values",
-							"objectClass": "System",
-							"sid": 594718720571726,
-							"parameters": {
-								"value": "CursorTest.Y",
-								"lower-bound": "PlayerBase.Y-Tile",
-								"upper-bound": "PlayerBase.Y+Tile"
+								"first-value": "Functions.CursorDistance",
+								"comparison": 0,
+								"second-value": "1"
 							}
 						}
 					],
@@ -52,7 +42,7 @@
 							"objectClass": "Functions",
 							"sid": 899165334211769,
 							"parameters": {
-								"value": "Functions.GetAngleIndex(\nPlayerBase.X,\nPlayerBase.Y,\nCursorTest.X,\nCursorTest.Y)"
+								"value": "Functions.GetAngle45(\nPlayerBase.X,\nPlayerBase.Y,\nCursorTest.X,\nCursorTest.Y)"
 							}
 						}
 					],
@@ -73,7 +63,7 @@
 							"objectClass": "Functions",
 							"sid": 120712298099060,
 							"parameters": {
-								"value": "Functions.GetAngleIndex(\nPlayerBase.ImagePointX(\"center\"),\nPlayerBase.ImagePointY(\"center\"),\nTouch.X,\nTouch.Y)"
+								"value": "Functions.GetAngle45(\nPlayerBase.ImagePointX(\"center\"),\nPlayerBase.ImagePointY(\"center\"),\nTouch.X,\nTouch.Y)"
 							}
 						}
 					],
@@ -82,7 +72,7 @@
 			]
 		},
 		{
-			"functionName": "GetAngleIndex",
+			"functionName": "GetAngle45",
 			"functionDescription": "Returns the angle between two points rounded to 45 degrees",
 			"functionCategory": "",
 			"functionReturnType": "number",
@@ -126,14 +116,22 @@
 				},
 				{
 					"type": "comment",
-					"text": "(angle+360)%360 turns -180°‒180° angles to 0°‒360°, 45*round(angle/45) rounds to nearest 45°"
+					"text": "(angle+360)%360 turns -180°‒180° angles to 0°‒360°"
+				},
+				{
+					"type": "comment",
+					"text": "45×round(angle/45) rounds to nearest 45°"
+				},
+				{
+					"type": "comment",
+					"text": "(angle)%360 to return 0° instead of 360°"
 				},
 				{
 					"id": "set-function-return-value",
 					"objectClass": "Functions",
-					"sid": 618358712827123,
+					"sid": 886825696749248,
 					"parameters": {
-						"value": "45*round(((angle(X1, Y1, X2, Y2)+360)%360)/45)"
+						"value": "(45*round(((angle(X1, Y1, X2, Y2)+360)%360)/45))%360"
 					}
 				}
 			],
@@ -261,6 +259,42 @@
 			"sid": 340353274459746
 		},
 		{
+			"functionName": "PlayerDistance",
+			"functionDescription": "Returns the distance in tiles between point and PlayerBase",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "X",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "X of start point",
+					"sid": 367843726213023
+				},
+				{
+					"name": "Y",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Y of start point",
+					"sid": 582066938954167
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 366746656232550,
+					"parameters": {
+						"value": "Functions.TileDistance(X, Y, PlayerBase.X, PlayerBase.Y)"
+					}
+				}
+			],
+			"sid": 582656977885945
+		},
+		{
 			"functionName": "TileDistance",
 			"functionDescription": "Returns the distance in tiles between two points",
 			"functionCategory": "",
@@ -320,9 +354,93 @@
 			"sid": 692891348368683
 		},
 		{
+			"functionName": "DamagePlayer",
+			"functionDescription": "Damage player character by inputted value",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "Damage",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Damage to deal to player",
+					"sid": 687740638549152
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "PlayerBase",
+					"sid": 872221105979153,
+					"parameters": {
+						"instance-variable": "hp",
+						"value": "Damage"
+					}
+				}
+			],
+			"sid": 838345261368669
+		},
+		{
+			"functionName": "DamageEnemy",
+			"functionDescription": "Damage target enemy by inputted value",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "Damage",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Damage to deal to enemy",
+					"sid": 942160691577775
+				},
+				{
+					"name": "UID",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "UID of enemy to deal damage to",
+					"sid": 512046850619116
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 932099397002087,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "EnemyBases",
+							"sid": 136616229341531,
+							"parameters": {
+								"unique-id": "UID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "EnemyBases",
+							"sid": 195573870578256,
+							"parameters": {
+								"instance-variable": "hp",
+								"value": "Damage"
+							}
+						}
+					],
+					"sid": 646015231928047
+				}
+			]
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Debug",
+			"title": "DebugFunctions",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -339,9 +457,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "TXTturn",
-							"sid": 344780085134859,
+							"sid": 469917594782430,
 							"parameters": {
-								"text": "EnemiesActive & \"; Turn \" & Turn"
+								"text": "\"Enemies: \" & EnemiesActive & \"; Turn \" & Turn"
 							}
 						},
 						{
@@ -382,15 +500,7 @@
 									"objectClass": "TXTenemydata",
 									"sid": 733767473029818,
 									"parameters": {
-										"text": "EnemyBases.hp & \"/\" & EnemyBases.maxhp & \" \" & EnemyBases.ActTime & \"/\" & EnemyBases.ActThreshold & \" \" & EnemyBases.TurnOrder"
-									}
-								},
-								{
-									"id": "append-text",
-									"objectClass": "TXTturn",
-									"sid": 411931046834882,
-									"parameters": {
-										"text": "\"*\""
+										"text": "EnemyBases.hp & \"/\" & EnemyBases.maxhp & \" \" & EnemyBases.ActTime & \"/\" & EnemyBases.ActThMove & \" \" & EnemyBases.TurnOrder"
 									}
 								}
 							],
@@ -428,6 +538,263 @@
 				}
 			],
 			"sid": 107274233799421
+		},
+		{
+			"eventType": "comment",
+			"text": "Usable for when player is moved by e.g. enemy attack"
+		},
+		{
+			"functionName": "MovePlayerOneTile",
+			"functionDescription": "Move PlayerBase to correct tile based on angle (0-360)",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "moveAngle",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Angle of movement",
+					"sid": 328507846548003
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerBase",
+					"sid": 275279284490143,
+					"parameters": {
+						"instance-variable": "MoveAngle",
+						"value": "moveAngle"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerBase",
+					"sid": 854337544910664,
+					"parameters": {
+						"instance-variable": "MoveX",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerBase",
+					"sid": 770764778146551,
+					"parameters": {
+						"instance-variable": "MoveY",
+						"value": "0"
+					}
+				}
+			],
+			"sid": 339589779955344,
+			"disabled": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 837947077006302,
+							"parameters": {
+								"first-value": "abs(PlayerBase.MoveAngle)",
+								"comparison": 3,
+								"second-value": "45"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 810798492293179,
+							"parameters": {
+								"first-value": "abs(PlayerBase.MoveAngle)",
+								"comparison": 5,
+								"second-value": "315"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 225228227506842,
+							"parameters": {
+								"instance-variable": "MoveX",
+								"value": "Tile"
+							}
+						}
+					],
+					"sid": 421688721406560,
+					"disabled": true,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-between-values",
+							"objectClass": "System",
+							"sid": 522662724709795,
+							"parameters": {
+								"value": "PlayerBase.MoveAngle",
+								"lower-bound": "45",
+								"upper-bound": "135"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 495203786705672,
+							"parameters": {
+								"instance-variable": "MoveY",
+								"value": "Tile"
+							}
+						}
+					],
+					"sid": 486342918509024,
+					"disabled": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-between-values",
+							"objectClass": "System",
+							"sid": 969520471534766,
+							"parameters": {
+								"value": "PlayerBase.MoveAngle",
+								"lower-bound": "135",
+								"upper-bound": "225"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 664626713785256,
+							"parameters": {
+								"instance-variable": "MoveX",
+								"value": "-Tile"
+							}
+						}
+					],
+					"sid": 684058582234536,
+					"disabled": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-between-values",
+							"objectClass": "System",
+							"sid": 810121991545435,
+							"parameters": {
+								"value": "PlayerBase.MoveAngle",
+								"lower-bound": "225",
+								"upper-bound": "315"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 817927228460470,
+							"parameters": {
+								"instance-variable": "MoveY",
+								"value": "-Tile"
+							}
+						}
+					],
+					"sid": 339112512791130,
+					"disabled": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "PlayerBase",
+							"sid": 541762153048028,
+							"parameters": {
+								"x": "PlayerBase.X + PlayerBase.MoveX",
+								"y": "PlayerBase.Y + PlayerBase.MoveY"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "TXTmovedistance",
+							"sid": 354059620272526,
+							"parameters": {
+								"text": "\"Move: \" & PlayerBase.MoveX & \", \" & PlayerBase.MoveY"
+							}
+						}
+					],
+					"sid": 865315964994295,
+					"disabled": true
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "PlayerBase",
+					"sid": 276104219359694,
+					"parameters": {
+						"instance-variable": "MoveX",
+						"comparison": 1,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-x",
+					"objectClass": "PlayerBase",
+					"sid": 368943917501179,
+					"parameters": {
+						"x": "PlayerBase.X+PlayerBase.MoveX"
+					}
+				}
+			],
+			"sid": 919454543834805,
+			"disabled": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "PlayerBase",
+					"sid": 799654694997607,
+					"parameters": {
+						"instance-variable": "MoveY",
+						"comparison": 1,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-x",
+					"objectClass": "PlayerBase",
+					"sid": 855495656416696,
+					"parameters": {
+						"x": "PlayerBase.Y+PlayerBase.MoveY"
+					}
+				}
+			],
+			"sid": 798624544011025,
+			"disabled": true
 		}
 	],
 	"sid": 159065806374315

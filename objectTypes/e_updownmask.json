@@ -12,13 +12,13 @@
 				"frames": [
 					{
 						"width": 16,
-						"height": 20,
+						"height": 22,
 						"originX": 0.5,
-						"originY": 0.8,
+						"originY": 0.7272727272727273,
 						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 3567190,
+						"imageSpriteId": 6578849,
 						"collisionPoly": {
 							"points": [
 								0,
@@ -28,15 +28,47 @@
 								1,
 								0,
 								1,
+								0.9090909090909091,
 								1,
+								0.9090909090909091,
 								1,
-								1,
-								1,
-								1,
+								0.9090909090909091,
+								0,
+								0.9090909090909091,
+								0,
+								0.9090909090909091
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 16,
+						"height": 22,
+						"originX": 0.5,
+						"originY": 0.7272727272727273,
+						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6633370,
+						"collisionPoly": {
+							"points": [
+								0,
 								0,
 								1,
 								0,
-								1
+								1,
+								0,
+								1,
+								0.9090909090909091,
+								1,
+								0.9090909090909091,
+								1,
+								0.9090909090909091,
+								0,
+								0.9090909090909091,
+								0,
+								0.9090909090909091
 							]
 						},
 						"useCollisionPoly": true,
@@ -45,54 +77,11 @@
 				],
 				"sid": 993863841078539,
 				"name": "New",
-				"isLooping": false,
+				"isLooping": true,
 				"isPingPong": false,
 				"repeatCount": 1,
 				"repeatTo": 0,
-				"speed": 5
-			},
-			{
-				"frames": [
-					{
-						"width": 16,
-						"height": 20,
-						"originX": 0.5,
-						"originY": 0.8,
-						"originalSource": "C:\\Users\\mctur\\Desktop\\Files\\Luotsaamo\\Level 4\\LailaConcept.png",
-						"exportFormat": "png",
-						"exportQuality": 0.8,
-						"imageSpriteId": 2710605,
-						"collisionPoly": {
-							"points": [
-								0,
-								0,
-								1,
-								0,
-								1,
-								0,
-								1,
-								1,
-								1,
-								1,
-								1,
-								1,
-								0,
-								1,
-								0,
-								1
-							]
-						},
-						"useCollisionPoly": true,
-						"duration": 1
-					}
-				],
-				"sid": 558430055492729,
-				"name": "Old",
-				"isLooping": false,
-				"isPingPong": false,
-				"repeatCount": 1,
-				"repeatTo": 0,
-				"speed": 5
+				"speed": 3
 			}
 		],
 		"subfolders": []

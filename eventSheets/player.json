@@ -254,7 +254,8 @@
 													"sid": 398897938335768
 												}
 											],
-											"sid": 659167310818719
+											"sid": 659167310818719,
+											"disabled": true
 										}
 									]
 								}
@@ -376,9 +377,18 @@
 											],
 											"actions": [
 												{
+													"callFunction": "DamageEnemy",
+													"sid": 249237473008228,
+													"parameters": [
+														"PlayerBase.meleeDmg",
+														"EnemyBases.UID"
+													]
+												},
+												{
 													"id": "subtract-from-instvar",
 													"objectClass": "EnemyBases",
 													"sid": 316157160772868,
+													"disabled": true,
 													"parameters": {
 														"instance-variable": "hp",
 														"value": "PlayerBase.meleeDmg"
@@ -586,20 +596,20 @@
 				{
 					"id": "else",
 					"objectClass": "System",
-					"sid": 612026573001912
+					"sid": 608974591082586
 				}
 			],
 			"actions": [
 				{
 					"id": "set-visible",
 					"objectClass": "MoveTile",
-					"sid": 942078315413773,
+					"sid": 883268378724739,
 					"parameters": {
 						"visibility": "invisible"
 					}
 				}
 			],
-			"sid": 708076754147661
+			"sid": 804763867055242
 		}
 	],
 	"sid": 674070928567353

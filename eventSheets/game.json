@@ -137,839 +137,623 @@
 			"disabled": true
 		},
 		{
-			"functionName": "MovePlayerOneTile",
-			"functionDescription": "Move PlayerBase to correct tile based on angle (0-360)",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionIsAsync": false,
-			"functionParameters": [
-				{
-					"name": "moveAngle",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "Angle of movement",
-					"sid": 328507846548003
-				}
-			],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [
-				{
-					"id": "set-instvar-value",
-					"objectClass": "PlayerBase",
-					"sid": 275279284490143,
-					"parameters": {
-						"instance-variable": "MoveAngle",
-						"value": "moveAngle"
-					}
-				},
-				{
-					"id": "set-instvar-value",
-					"objectClass": "PlayerBase",
-					"sid": 854337544910664,
-					"parameters": {
-						"instance-variable": "MoveX",
-						"value": "0"
-					}
-				},
-				{
-					"id": "set-instvar-value",
-					"objectClass": "PlayerBase",
-					"sid": 770764778146551,
-					"parameters": {
-						"instance-variable": "MoveY",
-						"value": "0"
-					}
-				}
-			],
-			"sid": 339589779955344,
-			"disabled": true,
+			"eventType": "group",
+			"disabled": false,
+			"title": "Debug",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 837947077006302,
-							"parameters": {
-								"first-value": "abs(PlayerBase.MoveAngle)",
-								"comparison": 3,
-								"second-value": "45"
-							}
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 810798492293179,
-							"parameters": {
-								"first-value": "abs(PlayerBase.MoveAngle)",
-								"comparison": 5,
-								"second-value": "315"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "PlayerBase",
-							"sid": 225228227506842,
-							"parameters": {
-								"instance-variable": "MoveX",
-								"value": "Tile"
-							}
-						}
-					],
-					"sid": 421688721406560,
-					"disabled": true,
-					"isOrBlock": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-between-values",
-							"objectClass": "System",
-							"sid": 522662724709795,
-							"parameters": {
-								"value": "PlayerBase.MoveAngle",
-								"lower-bound": "45",
-								"upper-bound": "135"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "PlayerBase",
-							"sid": 495203786705672,
-							"parameters": {
-								"instance-variable": "MoveY",
-								"value": "Tile"
-							}
-						}
-					],
-					"sid": 486342918509024,
-					"disabled": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-between-values",
-							"objectClass": "System",
-							"sid": 969520471534766,
-							"parameters": {
-								"value": "PlayerBase.MoveAngle",
-								"lower-bound": "135",
-								"upper-bound": "225"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "PlayerBase",
-							"sid": 664626713785256,
-							"parameters": {
-								"instance-variable": "MoveX",
-								"value": "-Tile"
-							}
-						}
-					],
-					"sid": 684058582234536,
-					"disabled": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-between-values",
-							"objectClass": "System",
-							"sid": 810121991545435,
-							"parameters": {
-								"value": "PlayerBase.MoveAngle",
-								"lower-bound": "225",
-								"upper-bound": "315"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "PlayerBase",
-							"sid": 817927228460470,
-							"parameters": {
-								"instance-variable": "MoveY",
-								"value": "-Tile"
-							}
-						}
-					],
-					"sid": 339112512791130,
-					"disabled": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-position",
-							"objectClass": "PlayerBase",
-							"sid": 541762153048028,
-							"parameters": {
-								"x": "PlayerBase.X + PlayerBase.MoveX",
-								"y": "PlayerBase.Y + PlayerBase.MoveY"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "TXTmovedistance",
-							"sid": 354059620272526,
-							"parameters": {
-								"text": "\"Move: \" & PlayerBase.MoveX & \", \" & PlayerBase.MoveY"
-							}
-						}
-					],
-					"sid": 865315964994295,
-					"disabled": true
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "compare-instance-variable",
-					"objectClass": "PlayerBase",
-					"sid": 276104219359694,
-					"parameters": {
-						"instance-variable": "MoveX",
-						"comparison": 1,
-						"value": "0"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-x",
-					"objectClass": "PlayerBase",
-					"sid": 368943917501179,
-					"parameters": {
-						"x": "PlayerBase.X+PlayerBase.MoveX"
-					}
-				}
-			],
-			"sid": 919454543834805,
-			"disabled": true
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "compare-instance-variable",
-					"objectClass": "PlayerBase",
-					"sid": 799654694997607,
-					"parameters": {
-						"instance-variable": "MoveY",
-						"comparison": 1,
-						"value": "0"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-x",
-					"objectClass": "PlayerBase",
-					"sid": 855495656416696,
-					"parameters": {
-						"x": "PlayerBase.Y+PlayerBase.MoveY"
-					}
-				}
-			],
-			"sid": 798624544011025,
-			"disabled": true
-		},
-		{
-			"eventType": "comment",
-			"text": "Display Player Pathfinding"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-path-found",
-					"objectClass": "PlayerBase",
-					"sid": 512803503606143,
-					"behaviorType": "Pathfinding"
-				}
-			],
-			"actions": [
-				{
-					"id": "create-object",
-					"objectClass": "System",
-					"sid": 672620521969275,
-					"parameters": {
-						"object-to-create": "Node",
-						"layer": "\"Layer 0\"",
-						"x": "PlayerBase.ImagePointX(\"center\")",
-						"y": "PlayerBase.ImagePointY(\"center\")"
-					}
-				},
-				{
-					"id": "set-angle-toward-position",
-					"objectClass": "Node",
-					"sid": 885811489412841,
-					"parameters": {
-						"x": "PlayerBase.Pathfinding.NodeXAt(0)",
-						"y": "PlayerBase.Pathfinding.NodeYAt(0)"
-					}
-				},
-				{
-					"id": "set-angle",
-					"objectClass": "Node",
-					"sid": 711421660772931,
-					"parameters": {
-						"angle": "round(Self.Angle/45)*45"
-					}
-				},
-				{
-					"id": "set-instvar-value",
-					"objectClass": "PlayerBase",
-					"sid": 386311849953547,
-					"parameters": {
-						"instance-variable": "MoveAngle",
-						"value": "Node.Angle"
-					}
-				},
-				{
-					"id": "set-instvar-value",
-					"objectClass": "PlayerBase",
-					"sid": 852869933473029,
-					"parameters": {
-						"instance-variable": "MoveX",
-						"value": "0"
-					}
-				},
-				{
-					"id": "set-instvar-value",
-					"objectClass": "PlayerBase",
-					"sid": 357028234564924,
-					"parameters": {
-						"instance-variable": "MoveY",
-						"value": "0"
-					}
-				},
-				{
-					"id": "create-object",
-					"objectClass": "System",
-					"sid": 276701768542860,
-					"parameters": {
-						"object-to-create": "PfPing",
-						"layer": "\"Layer 0\"",
-						"x": "PlayerBase.Pathfinding.NodeXAt(PlayerBase.Pathfinding.NodeCount-1)",
-						"y": "PlayerBase.Pathfinding.NodeYAt(PlayerBase.Pathfinding.NodeCount-1)"
-					}
-				}
-			],
-			"sid": 447887303418001,
-			"disabled": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 630016224710398,
-							"parameters": {
-								"first-value": "abs(PlayerBase.MoveAngle)",
-								"comparison": 3,
-								"second-value": "45"
-							}
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 305968984398831,
-							"parameters": {
-								"first-value": "abs(PlayerBase.MoveAngle)",
-								"comparison": 5,
-								"second-value": "315"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "PlayerBase",
-							"sid": 514255062052319,
-							"parameters": {
-								"instance-variable": "MoveX",
-								"value": "Tile"
-							}
-						}
-					],
-					"sid": 663303559204714,
-					"disabled": true,
-					"isOrBlock": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-between-values",
-							"objectClass": "System",
-							"sid": 217063052560116,
-							"parameters": {
-								"value": "PlayerBase.MoveAngle",
-								"lower-bound": "45",
-								"upper-bound": "135"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "PlayerBase",
-							"sid": 696690487626369,
-							"parameters": {
-								"instance-variable": "MoveY",
-								"value": "Tile"
-							}
-						}
-					],
-					"sid": 237603628780934,
-					"disabled": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-between-values",
-							"objectClass": "System",
-							"sid": 592056988382747,
-							"parameters": {
-								"value": "PlayerBase.MoveAngle",
-								"lower-bound": "135",
-								"upper-bound": "225"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "PlayerBase",
-							"sid": 343293854349460,
-							"parameters": {
-								"instance-variable": "MoveX",
-								"value": "-Tile"
-							}
-						}
-					],
-					"sid": 489215945725459,
-					"disabled": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-between-values",
-							"objectClass": "System",
-							"sid": 100712112635223,
-							"parameters": {
-								"value": "PlayerBase.MoveAngle",
-								"lower-bound": "225",
-								"upper-bound": "315"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "PlayerBase",
-							"sid": 936362262479549,
-							"parameters": {
-								"instance-variable": "MoveY",
-								"value": "-Tile"
-							}
-						}
-					],
-					"sid": 935729709613697,
-					"disabled": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-tile-at",
-							"objectClass": "Collisions",
-							"sid": 475446385180052,
-							"parameters": {
-								"tile-x": "CursorTest.X/Tile",
-								"tile-y": "CursorTest.Y/Tile",
-								"comparison": 1,
-								"tile": "0"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-text",
-							"objectClass": "TXTmovedistance",
-							"sid": 965699643504224,
-							"parameters": {
-								"text": "\"Move: \" & PlayerBase.MoveX & \", \" & PlayerBase.MoveY"
-							}
-						},
-						{
-							"id": "create-object",
-							"objectClass": "System",
-							"sid": 647231289517657,
-							"parameters": {
-								"object-to-create": "OldMoveTile",
-								"layer": "0",
-								"x": "PlayerBase.X+PlayerBase.MoveX",
-								"y": "PlayerBase.Y+PlayerBase.MoveY"
-							}
-						}
-					],
-					"sid": 165160204067175,
-					"disabled": true
-				},
 				{
 					"eventType": "comment",
-					"text": "Copied from pathfinding example"
+					"text": "Display Player Pathfinding"
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "repeat",
-							"objectClass": "System",
-							"sid": 139449800388704,
-							"parameters": {
-								"count": "PlayerBase.Pathfinding.NodeCount"
-							}
+							"id": "on-path-found",
+							"objectClass": "PlayerBase",
+							"sid": 320701856126924,
+							"behaviorType": "Pathfinding"
 						}
 					],
 					"actions": [
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 563101274831598,
+							"sid": 367723526791301,
 							"parameters": {
 								"object-to-create": "Node",
 								"layer": "\"Layer 0\"",
-								"x": "PlayerBase.Pathfinding.NodeXAt(loopindex)",
-								"y": "PlayerBase.Pathfinding.NodeYAt(loopindex)"
+								"x": "PlayerBase.ImagePointX(\"center\")",
+								"y": "PlayerBase.ImagePointY(\"center\")"
+							}
+						},
+						{
+							"id": "set-angle-toward-position",
+							"objectClass": "Node",
+							"sid": 623158552097471,
+							"parameters": {
+								"x": "PlayerBase.Pathfinding.NodeXAt(0)",
+								"y": "PlayerBase.Pathfinding.NodeYAt(0)"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "Node",
+							"sid": 891675934237331,
+							"parameters": {
+								"angle": "round(Self.Angle/45)*45"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 352863959747472,
+							"parameters": {
+								"instance-variable": "MoveAngle",
+								"value": "Node.Angle"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 663626930225864,
+							"parameters": {
+								"instance-variable": "MoveX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerBase",
+							"sid": 202779046823871,
+							"parameters": {
+								"instance-variable": "MoveY",
+								"value": "0"
 							}
 						},
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 661852967242011,
+							"sid": 458500977448279,
 							"parameters": {
-								"object-to-create": "OldMoveTile",
+								"object-to-create": "PfPing",
 								"layer": "\"Layer 0\"",
-								"x": "floor(PlayerBase.Pathfinding.NodeXAt(loopindex)/Tile)*Tile",
-								"y": "floor(PlayerBase.Pathfinding.NodeYAt(loopindex)/Tile)*Tile"
+								"x": "PlayerBase.Pathfinding.NodeXAt(PlayerBase.Pathfinding.NodeCount-1)",
+								"y": "PlayerBase.Pathfinding.NodeYAt(PlayerBase.Pathfinding.NodeCount-1)"
 							}
 						}
 					],
-					"sid": 446868255458504,
+					"sid": 264708198510238,
+					"disabled": true,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "If it's the last node, change the animation frame to show it's the end."
-						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 498700542391882,
+									"sid": 620248287364927,
 									"parameters": {
-										"first-value": "LoopIndex",
-										"comparison": 0,
-										"second-value": "PlayerBase.Pathfinding.NodeCount - 1"
+										"first-value": "abs(PlayerBase.MoveAngle)",
+										"comparison": 3,
+										"second-value": "45"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 812300361838500,
+									"parameters": {
+										"first-value": "abs(PlayerBase.MoveAngle)",
+										"comparison": 5,
+										"second-value": "315"
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "set-animation-frame",
-									"objectClass": "Node",
-									"sid": 678792043586090,
+									"id": "set-instvar-value",
+									"objectClass": "PlayerBase",
+									"sid": 873423560227843,
 									"parameters": {
-										"frame-number": "1"
+										"instance-variable": "MoveX",
+										"value": "Tile"
 									}
 								}
 							],
-							"sid": 203779515300275
-						},
-						{
-							"eventType": "comment",
-							"text": "Otherwise point it to the next node."
+							"sid": 166676173210645,
+							"disabled": true,
+							"isOrBlock": true
 						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "else",
+									"id": "is-between-values",
 									"objectClass": "System",
-									"sid": 804052200883678
+									"sid": 602944122586925,
+									"parameters": {
+										"value": "PlayerBase.MoveAngle",
+										"lower-bound": "45",
+										"upper-bound": "135"
+									}
 								}
 							],
 							"actions": [
 								{
-									"id": "set-angle-toward-position",
-									"objectClass": "Node",
-									"sid": 581212344017724,
+									"id": "set-instvar-value",
+									"objectClass": "PlayerBase",
+									"sid": 638323427479004,
 									"parameters": {
-										"x": "PlayerBase.Pathfinding.NodeXAt(loopindex + 1)",
-										"y": "PlayerBase.Pathfinding.NodeYAt(loopindex + 1)"
+										"instance-variable": "MoveY",
+										"value": "Tile"
 									}
 								}
 							],
-							"sid": 149017256306654
+							"sid": 148636960515347,
+							"disabled": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 239513938656248,
+									"parameters": {
+										"value": "PlayerBase.MoveAngle",
+										"lower-bound": "135",
+										"upper-bound": "225"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "PlayerBase",
+									"sid": 242259577766560,
+									"parameters": {
+										"instance-variable": "MoveX",
+										"value": "-Tile"
+									}
+								}
+							],
+							"sid": 756845813948195,
+							"disabled": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 242932434200864,
+									"parameters": {
+										"value": "PlayerBase.MoveAngle",
+										"lower-bound": "225",
+										"upper-bound": "315"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "PlayerBase",
+									"sid": 542504876111370,
+									"parameters": {
+										"instance-variable": "MoveY",
+										"value": "-Tile"
+									}
+								}
+							],
+							"sid": 647089990516700,
+							"disabled": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-tile-at",
+									"objectClass": "Collisions",
+									"sid": 847095603071890,
+									"parameters": {
+										"tile-x": "CursorTest.X/Tile",
+										"tile-y": "CursorTest.Y/Tile",
+										"comparison": 1,
+										"tile": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "TXTmovedistance",
+									"sid": 604112153521725,
+									"parameters": {
+										"text": "\"Move: \" & PlayerBase.MoveX & \", \" & PlayerBase.MoveY"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 628044812707637,
+									"parameters": {
+										"object-to-create": "OldMoveTile",
+										"layer": "0",
+										"x": "PlayerBase.X+PlayerBase.MoveX",
+										"y": "PlayerBase.Y+PlayerBase.MoveY"
+									}
+								}
+							],
+							"sid": 945939871908376,
+							"disabled": true
+						},
+						{
+							"eventType": "comment",
+							"text": "Copied from pathfinding example"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "repeat",
+									"objectClass": "System",
+									"sid": 820649883941989,
+									"parameters": {
+										"count": "PlayerBase.Pathfinding.NodeCount"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 931777477427741,
+									"parameters": {
+										"object-to-create": "Node",
+										"layer": "\"Layer 0\"",
+										"x": "PlayerBase.Pathfinding.NodeXAt(loopindex)",
+										"y": "PlayerBase.Pathfinding.NodeYAt(loopindex)"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 672593807924021,
+									"parameters": {
+										"object-to-create": "OldMoveTile",
+										"layer": "\"Layer 0\"",
+										"x": "floor(PlayerBase.Pathfinding.NodeXAt(loopindex)/Tile)*Tile",
+										"y": "floor(PlayerBase.Pathfinding.NodeYAt(loopindex)/Tile)*Tile"
+									}
+								}
+							],
+							"sid": 731945055250003,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "If it's the last node, change the animation frame to show it's the end."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 159209496718116,
+											"parameters": {
+												"first-value": "LoopIndex",
+												"comparison": 0,
+												"second-value": "PlayerBase.Pathfinding.NodeCount - 1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "Node",
+											"sid": 216913219936612,
+											"parameters": {
+												"frame-number": "1"
+											}
+										}
+									],
+									"sid": 138073347255227
+								},
+								{
+									"eventType": "comment",
+									"text": "Otherwise point it to the next node."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 230925666748149
+										}
+									],
+									"actions": [
+										{
+											"id": "set-angle-toward-position",
+											"objectClass": "Node",
+											"sid": 349972694379404,
+											"parameters": {
+												"x": "PlayerBase.Pathfinding.NodeXAt(loopindex + 1)",
+												"y": "PlayerBase.Pathfinding.NodeYAt(loopindex + 1)"
+											}
+										}
+									],
+									"sid": 262574424856678
+								}
+							]
 						}
 					]
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-failed-to-find-path",
-					"objectClass": "PlayerBase",
-					"sid": 456899708941347,
-					"behaviorType": "Pathfinding"
-				}
-			],
-			"actions": [
-				{
-					"id": "flash",
-					"objectClass": "PlayerMask",
-					"sid": 363513301653848,
-					"behaviorType": "Flash",
-					"parameters": {
-						"on-time": "0.1",
-						"off-time": "0.1",
-						"duration": "0.5"
-					}
-				}
-			],
-			"sid": 362867716457436
-		},
-		{
-			"eventType": "comment",
-			"text": "Display Enemy Pathfinding"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-path-found",
-					"objectClass": "EnemyBases",
-					"sid": 796391311704224,
-					"behaviorType": "Pathfinding"
-				}
-			],
-			"actions": [
-				{
-					"id": "create-object",
-					"objectClass": "System",
-					"sid": 818290965999106,
-					"parameters": {
-						"object-to-create": "Node",
-						"layer": "\"Layer 0\"",
-						"x": "EnemyBases.ImagePointX(\"center\")",
-						"y": "EnemyBases.ImagePointY(\"center\")"
-					}
-				},
-				{
-					"id": "set-angle-toward-position",
-					"objectClass": "Node",
-					"sid": 489058656965495,
-					"parameters": {
-						"x": "EnemyBases.Pathfinding.NodeXAt(0)",
-						"y": "EnemyBases.Pathfinding.NodeYAt(0)"
-					}
-				},
-				{
-					"id": "set-angle",
-					"objectClass": "Node",
-					"sid": 613950202593080,
-					"disabled": true,
-					"parameters": {
-						"angle": "round(Self.Angle/45)*45"
-					}
-				},
-				{
-					"id": "create-object",
-					"objectClass": "System",
-					"sid": 333330202726550,
-					"parameters": {
-						"object-to-create": "PfPing",
-						"layer": "\"Layer 0\"",
-						"x": "EnemyBases.Pathfinding.NodeXAt(EnemyBases.Pathfinding.NodeCount-1)",
-						"y": "EnemyBases.Pathfinding.NodeYAt(EnemyBases.Pathfinding.NodeCount-1)"
-					}
-				}
-			],
-			"sid": 305286356991018,
-			"disabled": true,
-			"children": [
-				{
-					"eventType": "comment",
-					"text": "Copied from pathfinding example"
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "repeat",
-							"objectClass": "System",
-							"sid": 663715068289952,
+							"id": "on-failed-to-find-path",
+							"objectClass": "PlayerBase",
+							"sid": 836265952129023,
+							"behaviorType": "Pathfinding"
+						}
+					],
+					"actions": [
+						{
+							"id": "flash",
+							"objectClass": "PlayerMask",
+							"sid": 600732749741137,
+							"behaviorType": "Flash",
 							"parameters": {
-								"count": "EnemyBases.Pathfinding.NodeCount"
+								"on-time": "0.1",
+								"off-time": "0.1",
+								"duration": "0.5"
 							}
+						}
+					],
+					"sid": 671608709124328
+				},
+				{
+					"eventType": "comment",
+					"text": "Display Enemy Pathfinding"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-path-found",
+							"objectClass": "EnemyBases",
+							"sid": 431508938415016,
+							"behaviorType": "Pathfinding"
 						}
 					],
 					"actions": [
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 122380296249581,
+							"sid": 254143657225738,
 							"parameters": {
 								"object-to-create": "Node",
 								"layer": "\"Layer 0\"",
-								"x": "EnemyBases.Pathfinding.NodeXAt(loopindex)",
-								"y": "EnemyBases.Pathfinding.NodeYAt(loopindex)"
+								"x": "EnemyBases.ImagePointX(\"center\")",
+								"y": "EnemyBases.ImagePointY(\"center\")"
 							}
 						},
 						{
-							"id": "create-object",
-							"objectClass": "System",
-							"sid": 352423310684150,
+							"id": "set-angle-toward-position",
+							"objectClass": "Node",
+							"sid": 105684538407763,
+							"parameters": {
+								"x": "EnemyBases.Pathfinding.NodeXAt(0)",
+								"y": "EnemyBases.Pathfinding.NodeYAt(0)"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "Node",
+							"sid": 603916502135211,
 							"disabled": true,
 							"parameters": {
-								"object-to-create": "OldMoveTile",
+								"angle": "round(Self.Angle/45)*45"
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 515944003683182,
+							"parameters": {
+								"object-to-create": "PfPing",
 								"layer": "\"Layer 0\"",
-								"x": "floor(EnemyBases.Pathfinding.NodeXAt(loopindex)/Tile)*Tile",
-								"y": "floor(EnemyBases.Pathfinding.NodeYAt(loopindex)/Tile)*Tile"
+								"x": "EnemyBases.Pathfinding.NodeXAt(EnemyBases.Pathfinding.NodeCount-1)",
+								"y": "EnemyBases.Pathfinding.NodeYAt(EnemyBases.Pathfinding.NodeCount-1)"
 							}
 						}
 					],
-					"sid": 965077836037044,
+					"sid": 603081347208681,
 					"disabled": true,
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "If it's the last node, change the animation frame to show it's the end."
+							"text": "Copied from pathfinding example"
 						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-two-values",
+									"id": "repeat",
 									"objectClass": "System",
-									"sid": 118668129619997,
+									"sid": 922370094675685,
 									"parameters": {
-										"first-value": "LoopIndex",
-										"comparison": 0,
-										"second-value": "EnemyBases.Pathfinding.NodeCount - 1"
+										"count": "EnemyBases.Pathfinding.NodeCount"
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "set-animation-frame",
-									"objectClass": "Node",
-									"sid": 570565884004388,
-									"parameters": {
-										"frame-number": "1"
-									}
-								}
-							],
-							"sid": 827207354109972,
-							"disabled": true
-						},
-						{
-							"eventType": "comment",
-							"text": "Otherwise point it to the next node."
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
+									"id": "create-object",
 									"objectClass": "System",
-									"sid": 795039938214678
-								}
-							],
-							"actions": [
-								{
-									"id": "set-angle-toward-position",
-									"objectClass": "Node",
-									"sid": 437944077758098,
+									"sid": 646076410883568,
 									"parameters": {
-										"x": "EnemyBases.Pathfinding.NodeXAt(loopindex + 1)",
-										"y": "EnemyBases.Pathfinding.NodeYAt(loopindex + 1)"
+										"object-to-create": "Node",
+										"layer": "\"Layer 0\"",
+										"x": "EnemyBases.Pathfinding.NodeXAt(loopindex)",
+										"y": "EnemyBases.Pathfinding.NodeYAt(loopindex)"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 290129351720002,
+									"disabled": true,
+									"parameters": {
+										"object-to-create": "OldMoveTile",
+										"layer": "\"Layer 0\"",
+										"x": "floor(EnemyBases.Pathfinding.NodeXAt(loopindex)/Tile)*Tile",
+										"y": "floor(EnemyBases.Pathfinding.NodeYAt(loopindex)/Tile)*Tile"
 									}
 								}
 							],
-							"sid": 188439158870100,
-							"disabled": true
+							"sid": 205377240789429,
+							"disabled": true,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "If it's the last node, change the animation frame to show it's the end."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 849015324665642,
+											"parameters": {
+												"first-value": "LoopIndex",
+												"comparison": 0,
+												"second-value": "EnemyBases.Pathfinding.NodeCount - 1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "Node",
+											"sid": 213463935447815,
+											"parameters": {
+												"frame-number": "1"
+											}
+										}
+									],
+									"sid": 894223255665176,
+									"disabled": true
+								},
+								{
+									"eventType": "comment",
+									"text": "Otherwise point it to the next node."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 517606471002114
+										}
+									],
+									"actions": [
+										{
+											"id": "set-angle-toward-position",
+											"objectClass": "Node",
+											"sid": 372296019979368,
+											"parameters": {
+												"x": "EnemyBases.Pathfinding.NodeXAt(loopindex + 1)",
+												"y": "EnemyBases.Pathfinding.NodeYAt(loopindex + 1)"
+											}
+										}
+									],
+									"sid": 119198425461970,
+									"disabled": true
+								}
+							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-failed-to-find-path",
+							"objectClass": "EnemyBases",
+							"sid": 314116571894195,
+							"behaviorType": "Pathfinding"
+						}
+					],
+					"actions": [
+						{
+							"id": "flash",
+							"objectClass": "EnemyMasks",
+							"sid": 166035770879381,
+							"behaviorType": "Flash",
+							"parameters": {
+								"on-time": "0.1",
+								"off-time": "0.1",
+								"duration": "0.5"
+							}
+						}
+					],
+					"sid": 453439982652054
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-animation-finished",
+							"objectClass": "PfPing",
+							"sid": 361428094943297
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "PfPing",
+							"sid": 969623778319290
+						}
+					],
+					"sid": 518670992886925
 				}
-			]
+			],
+			"sid": 623352340288189
+		},
+		{
+			"eventType": "comment",
+			"text": "Set each Mask to the top of the layer in order from top to bottom"
 		},
 		{
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-failed-to-find-path",
-					"objectClass": "EnemyBases",
-					"sid": 967205817565553,
-					"behaviorType": "Pathfinding"
-				}
-			],
-			"actions": [
-				{
-					"id": "flash",
-					"objectClass": "EnemyMasks",
-					"sid": 617587230638208,
-					"behaviorType": "Flash",
+					"id": "for-each-ordered",
+					"objectClass": "System",
+					"sid": 433269085067442,
 					"parameters": {
-						"on-time": "0.1",
-						"off-time": "0.1",
-						"duration": "0.5"
+						"object": "Z_Sorting",
+						"expression": "Z_Sorting.Y",
+						"order": "ascending"
 					}
 				}
 			],
-			"sid": 822693925488589
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-any-animation-finished",
-					"objectClass": "PfPing",
-					"sid": 960075455258641
-				}
-			],
 			"actions": [
 				{
-					"id": "destroy",
-					"objectClass": "PfPing",
-					"sid": 454932853218918
+					"id": "move-to-top",
+					"objectClass": "Z_Sorting",
+					"sid": 619030929777622
 				}
 			],
-			"sid": 993377163552749
+			"sid": 772248838656393
 		}
 	],
 	"sid": 301707553409410
