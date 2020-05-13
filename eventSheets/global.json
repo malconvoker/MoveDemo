@@ -23,6 +23,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "GameSpeed",
+			"type": "number",
+			"initialValue": "0.1",
+			"comment": "Number of seconds between each turn",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 289283359011430
+		},
+		{
+			"eventType": "variable",
 			"name": "TouchMode",
 			"type": "string",
 			"initialValue": "default",

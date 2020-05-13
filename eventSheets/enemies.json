@@ -54,22 +54,38 @@
 								"variable": "EnemiesActive",
 								"value": "1"
 							}
-						},
-						{
-							"type": "comment",
-							"text": "TESTING"
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "EnemyBases",
-							"sid": 775371699941679,
-							"parameters": {
-								"instance-variable": "ActTime",
-								"value": "floor(random(Self.ActThMove+1))"
-							}
 						}
 					],
-					"sid": 389400577231928
+					"sid": 389400577231928,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "EnemyBases",
+									"sid": 185799838013319,
+									"parameters": {
+										"instance-variable": "ActTime",
+										"comparison": 0,
+										"value": "-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "EnemyBases",
+									"sid": 251640414943137,
+									"parameters": {
+										"instance-variable": "ActTime",
+										"value": "floor(random(Self.ActThMove+1))"
+									}
+								}
+							],
+							"sid": 285632634774135
+						}
+					]
 				}
 			]
 		},
@@ -320,6 +336,15 @@
 								"instance-variable": "TurnDone"
 							},
 							"isInverted": true
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "E_UpDownBase",
+							"sid": 829584108502327,
+							"parameters": {
+								"instance-variable": "TurnInProgress"
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [
@@ -330,6 +355,15 @@
 							"disabled": true,
 							"parameters": {
 								"degrees": "45"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_UpDownBase",
+							"sid": 751651053827849,
+							"parameters": {
+								"instance-variable": "TurnInProgress",
+								"value": "true"
 							}
 						}
 					],
@@ -349,7 +383,12 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Is in melee range to player"
+								}
+							],
 							"sid": 632453625515754,
 							"children": [
 								{
@@ -428,6 +467,32 @@
 										}
 									],
 									"sid": 991068294746641
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "E_UpDownBase",
+											"sid": 725671694199545,
+											"parameters": {
+												"instance-variable": "SkipPause",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "E_UpDownBase",
+											"sid": 202817771163479,
+											"breakpoint": true,
+											"parameters": {
+												"instance-variable": "TurnDone",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 422010422658569
 								}
 							]
 						},
@@ -480,15 +545,6 @@
 													"parameters": {
 														"y": "Self.Y-Tile"
 													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "E_UpDownBase",
-													"sid": 721743720675858,
-													"parameters": {
-														"instance-variable": "ActTime",
-														"value": "0"
-													}
 												}
 											],
 											"sid": 468680321761839
@@ -510,15 +566,6 @@
 													"parameters": {
 														"y": "Self.Y+Tile"
 													}
-												},
-												{
-													"id": "set-instvar-value",
-													"objectClass": "E_UpDownBase",
-													"sid": 751316082345781,
-													"parameters": {
-														"instance-variable": "ActTime",
-														"value": "0"
-													}
 												}
 											],
 											"sid": 203535681166180
@@ -528,15 +575,43 @@
 											"conditions": [],
 											"actions": [
 												{
+													"id": "set-instvar-value",
+													"objectClass": "E_UpDownBase",
+													"sid": 322351415704108,
+													"parameters": {
+														"instance-variable": "ActTime",
+														"value": "0"
+													}
+												},
+												{
 													"id": "toggle-boolean-instvar",
 													"objectClass": "E_UpDownBase",
-													"sid": 560855965862346,
+													"sid": 920622560648209,
 													"parameters": {
 														"instance-variable": "MoveUp"
 													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "E_UpDownBase",
+													"sid": 850089490687992,
+													"parameters": {
+														"instance-variable": "SkipPause",
+														"value": "false"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "E_UpDownBase",
+													"sid": 915783218904319,
+													"breakpoint": true,
+													"parameters": {
+														"instance-variable": "TurnDone",
+														"value": "true"
+													}
 												}
 											],
-											"sid": 774590441704064
+											"sid": 356696126844667
 										}
 									]
 								},
@@ -558,27 +633,30 @@
 												"instance-variable": "ActTime",
 												"value": "1"
 											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "E_UpDownBase",
+											"sid": 779618386711024,
+											"parameters": {
+												"instance-variable": "SkipPause",
+												"value": "true"
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "E_UpDownBase",
+											"sid": 784264344159892,
+											"breakpoint": true,
+											"parameters": {
+												"instance-variable": "TurnDone",
+												"value": "true"
+											}
 										}
 									],
 									"sid": 250039019675226
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-boolean-instvar",
-									"objectClass": "E_UpDownBase",
-									"sid": 719753891707302,
-									"parameters": {
-										"instance-variable": "TurnDone",
-										"value": "true"
-									}
-								}
-							],
-							"sid": 151678103717013
 						}
 					]
 				},
@@ -718,6 +796,15 @@
 								"instance-variable": "TurnDone"
 							},
 							"isInverted": true
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 641129115072495,
+							"parameters": {
+								"instance-variable": "TurnInProgress"
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [
@@ -728,6 +815,15 @@
 							"disabled": true,
 							"parameters": {
 								"degrees": "45"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 867442378045531,
+							"parameters": {
+								"instance-variable": "TurnInProgress",
+								"value": "true"
 							}
 						}
 					],
@@ -747,7 +843,12 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Is in melee range to player"
+								}
+							],
 							"sid": 545139554042881,
 							"children": [
 								{
@@ -834,6 +935,15 @@
 										{
 											"id": "set-boolean-instvar",
 											"objectClass": "E_SlowChaseBase",
+											"sid": 328459142821232,
+											"parameters": {
+												"instance-variable": "SkipPause",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "E_SlowChaseBase",
 											"sid": 560381426156708,
 											"parameters": {
 												"instance-variable": "TurnDone",
@@ -854,19 +964,78 @@
 									"sid": 323914996792610
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 543413981926605,
+							"children": [
 								{
-									"id": "find-path",
-									"objectClass": "E_SlowChaseBase",
-									"sid": 636077884639365,
-									"behaviorType": "Pathfinding",
-									"parameters": {
-										"x": "PlayerBase.X",
-										"y": "PlayerBase.Y"
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "E_SlowChaseBase",
+											"sid": 270926822405685,
+											"parameters": {
+												"instance-variable": "ActTime",
+												"comparison": 5,
+												"value": "Self.ActThMove"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "find-path",
+											"objectClass": "E_SlowChaseBase",
+											"sid": 745079404693807,
+											"behaviorType": "Pathfinding",
+											"parameters": {
+												"x": "PlayerBase.X",
+												"y": "PlayerBase.Y"
+											}
+										}
+									],
+									"sid": 850503308824993
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 818110366678241
+										}
+									],
+									"actions": [
+										{
+											"id": "add-to-instvar",
+											"objectClass": "E_SlowChaseBase",
+											"sid": 433633393360054,
+											"parameters": {
+												"instance-variable": "ActTime",
+												"value": "1"
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "E_SlowChaseBase",
+											"sid": 109926311211338,
+											"parameters": {
+												"instance-variable": "SkipPause",
+												"value": "true"
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "E_SlowChaseBase",
+											"sid": 990632553281991,
+											"parameters": {
+												"instance-variable": "TurnDone",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 557440253164377
 								}
-							],
-							"sid": 543413981926605
+							]
 						}
 					]
 				},
@@ -892,85 +1061,45 @@
 							"parameters": {
 								"frame-number": "Functions.GetAngle45(\nE_SlowChaseBase.ImagePointX(\"center\"),\nE_SlowChaseBase.ImagePointY(\"center\"),\nE_SlowChaseBase.Pathfinding.NodeXAt(0),\nE_SlowChaseBase.Pathfinding.NodeYAt(0))/45"
 							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 461351890349885,
+							"parameters": {
+								"x": "EnemyMoveTile.ImagePointX(\"position\")",
+								"y": "EnemyMoveTile.ImagePointY(\"position\")"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 858388613674324,
+							"parameters": {
+								"instance-variable": "ActTime",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 125195446555855,
+							"parameters": {
+								"instance-variable": "SkipPause",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 880836900974272,
+							"parameters": {
+								"instance-variable": "TurnDone",
+								"value": "true"
+							}
 						}
 					],
-					"sid": 165458451877291,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "E_SlowChaseBase",
-									"sid": 750541871864011,
-									"parameters": {
-										"instance-variable": "ActTime",
-										"comparison": 5,
-										"value": "Self.ActThMove"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-position",
-									"objectClass": "E_SlowChaseBase",
-									"sid": 272465769141165,
-									"parameters": {
-										"x": "EnemyMoveTile.ImagePointX(\"position\")",
-										"y": "EnemyMoveTile.ImagePointY(\"position\")"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "E_SlowChaseBase",
-									"sid": 895421509953583,
-									"parameters": {
-										"instance-variable": "ActTime",
-										"value": "0"
-									}
-								}
-							],
-							"sid": 821148400856630
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 899654769321009
-								}
-							],
-							"actions": [
-								{
-									"id": "add-to-instvar",
-									"objectClass": "E_SlowChaseBase",
-									"sid": 508291261520094,
-									"parameters": {
-										"instance-variable": "ActTime",
-										"value": "1"
-									}
-								}
-							],
-							"sid": 878262393116078
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-boolean-instvar",
-									"objectClass": "E_SlowChaseBase",
-									"sid": 433337614676699,
-									"parameters": {
-										"instance-variable": "TurnDone",
-										"value": "true"
-									}
-								}
-							],
-							"sid": 899262078889039
-						}
-					]
+					"sid": 165458451877291
 				},
 				{
 					"eventType": "block",
@@ -983,6 +1112,15 @@
 						}
 					],
 					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 785959113327661,
+							"parameters": {
+								"instance-variable": "SkipPause",
+								"value": "true"
+							}
+						},
 						{
 							"id": "set-boolean-instvar",
 							"objectClass": "E_SlowChaseBase",
@@ -1157,9 +1295,28 @@
 					"parameters": {
 						"instance-variable": "TurnDone"
 					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "EnemyBases",
+					"sid": 452476812872944,
+					"parameters": {
+						"instance-variable": "TurnInProgress"
+					}
 				}
 			],
-			"actions": [],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "EnemyBases",
+					"sid": 237934606896280,
+					"breakpoint": true,
+					"parameters": {
+						"instance-variable": "TurnInProgress",
+						"value": "false"
+					}
+				}
+			],
 			"sid": 831443687749116,
 			"children": [
 				{
@@ -1194,6 +1351,14 @@
 							"id": "else",
 							"objectClass": "System",
 							"sid": 317583139828316
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "EnemyBases",
+							"sid": 215787148768617,
+							"parameters": {
+								"instance-variable": "SkipPause"
+							}
 						}
 					],
 					"actions": [
@@ -1208,6 +1373,33 @@
 						}
 					],
 					"sid": 182385396146798
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 373664110936234
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "NextTurn",
+							"sid": 413772876090203
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 529048344741596,
+							"disabled": true,
+							"parameters": {
+								"variable": "Turn",
+								"value": "0.5"
+							}
+						}
+					],
+					"sid": 625618489854120
 				},
 				{
 					"eventType": "block",
@@ -1283,6 +1475,16 @@
 										"variable": "Turn",
 										"comparison": 1,
 										"value": "0"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 594169090335672,
+									"parameters": {
+										"first-value": "Turn % 1",
+										"comparison": 0,
+										"second-value": "0"
 									}
 								}
 							],
@@ -1383,6 +1585,14 @@
 							"parameters": {
 								"variable": "Turn",
 								"value": "0"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "TXTerrors",
+							"sid": 693345505459798,
+							"parameters": {
+								"text": "\" fe\""
 							}
 						}
 					],

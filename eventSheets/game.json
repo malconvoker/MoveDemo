@@ -754,6 +754,117 @@
 				}
 			],
 			"sid": 772248838656393
+		},
+		{
+			"eventType": "comment",
+			"text": "Checks if Turn is X.5, so transitioning to next turn"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 712564222833869,
+					"parameters": {
+						"first-value": "Turn % 1",
+						"comparison": 0,
+						"second-value": "0.5"
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 320505029125470,
+					"disabled": true,
+					"parameters": {
+						"first-value": "Turn - floor(Turn)",
+						"comparison": 0,
+						"second-value": "0.5"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 648843739132680
+				}
+			],
+			"actions": [
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 402003053501375,
+					"breakpoint": true,
+					"parameters": {
+						"variable": "Turn",
+						"value": "0.25"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 199288709576891,
+					"parameters": {
+						"seconds": "GameSpeed"
+					}
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 578067743517172,
+					"parameters": {
+						"variable": "Turn",
+						"value": "0.25"
+					}
+				}
+			],
+			"sid": 675038742235250
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 421401627533937,
+					"parameters": {
+						"interval-seconds": "5"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "TXTerrors",
+					"sid": 876243102467122,
+					"parameters": {
+						"text": "\"Err:\""
+					}
+				}
+			],
+			"sid": 590655484907137,
+			"disabled": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 297249799550342,
+					"parameters": {
+						"key": 82
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 181862152766052
+				}
+			],
+			"sid": 552201617916488
 		}
 	],
 	"sid": 301707553409410

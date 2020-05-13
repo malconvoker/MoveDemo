@@ -408,10 +408,25 @@
 													"id": "set-eventvar-value",
 													"objectClass": "System",
 													"sid": 393865305181263,
+													"disabled": true,
 													"parameters": {
 														"variable": "Turn",
 														"value": "1"
 													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 903027636297334,
+													"disabled": true,
+													"parameters": {
+														"variable": "Turn",
+														"value": "0.5"
+													}
+												},
+												{
+													"callFunction": "NextTurn",
+													"sid": 494724008642803
 												}
 											],
 											"sid": 533233418488582
@@ -457,9 +472,33 @@
 													"id": "set-eventvar-value",
 													"objectClass": "System",
 													"sid": 727664668784080,
+													"disabled": true,
 													"parameters": {
 														"variable": "Turn",
 														"value": "1"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 381428243105717,
+													"disabled": true,
+													"parameters": {
+														"variable": "Turn",
+														"value": "0.5"
+													}
+												},
+												{
+													"callFunction": "NextTurn",
+													"sid": 866257831056429
+												},
+												{
+													"id": "set-position",
+													"objectClass": "CursorTest",
+													"sid": 680063588878571,
+													"parameters": {
+														"x": "-100",
+														"y": "-100"
 													}
 												}
 											],
@@ -486,6 +525,7 @@
 											"id": "is-touching-object",
 											"objectClass": "Touch",
 											"sid": 777320376792346,
+											"disabled": true,
 											"parameters": {
 												"object": "PlayerBase"
 											}
@@ -506,10 +546,25 @@
 											"id": "set-eventvar-value",
 											"objectClass": "System",
 											"sid": 221141694342014,
+											"disabled": true,
 											"parameters": {
 												"variable": "Turn",
 												"value": "1"
 											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 477523247243244,
+											"disabled": true,
+											"parameters": {
+												"variable": "Turn",
+												"value": "0.5"
+											}
+										},
+										{
+											"callFunction": "NextTurn",
+											"sid": 955194059940733
 										}
 									],
 									"sid": 742393141232857
@@ -569,9 +624,19 @@
 					"isInverted": true
 				},
 				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "CursorTest",
+					"sid": 866366554274424,
+					"parameters": {
+						"object": "PlayerBase"
+					},
+					"isInverted": true
+				},
+				{
 					"id": "is-touching-object",
 					"objectClass": "Touch",
 					"sid": 831637292953610,
+					"disabled": true,
 					"parameters": {
 						"object": "PlayerBase"
 					},

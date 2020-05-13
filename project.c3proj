@@ -39,6 +39,22 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "TiledBg",
+			"name": "Tiled Background",
+			"author": "Scirra",
+			"version": "r197.2",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Keyboard",
+			"name": "Keyboard",
+			"author": "Scirra",
+			"version": "r197.2",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "Pathfinding",
 			"name": "Pathfinding",
@@ -62,7 +78,10 @@
 			"Touch",
 			"Node",
 			"Collisions",
-			"PfPing"
+			"PfPing",
+			"TMdungeon",
+			"TiledBackground",
+			"Keyboard"
 		],
 		"subfolders": [
 			{
@@ -138,7 +157,8 @@
 	},
 	"layouts": {
 		"items": [
-			"Layout 1"
+			"Layout 1",
+			"Layout 2"
 		],
 		"subfolders": []
 	},
@@ -229,7 +249,7 @@
 	},
 	"properties": {
 		"description": "Team Iron Move Demo",
-		"version": "0.2.1",
+		"version": "0.3.0",
 		"author": "Malconvoker",
 		"authorEmail": "",
 		"authorWebsite": "",
@@ -274,5 +294,5 @@
 	},
 	"viewportWidth": 427,
 	"viewportHeight": 240,
-	"firstLayout": null
+	"firstLayout": "Layout 2"
 }

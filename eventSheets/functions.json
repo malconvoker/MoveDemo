@@ -384,6 +384,45 @@
 			"sid": 838345261368669
 		},
 		{
+			"functionName": "NextTurn",
+			"functionDescription": "Moves to next turn in order",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 849035276031108,
+					"parameters": {
+						"variable": "Turn",
+						"value": "0.1"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 990194674472357,
+					"parameters": {
+						"seconds": "GameSpeed"
+					}
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 142748411565658,
+					"parameters": {
+						"variable": "Turn",
+						"value": "0.9"
+					}
+				}
+			],
+			"sid": 227735025903153
+		},
+		{
 			"functionName": "DamageEnemy",
 			"functionDescription": "Damage target enemy by inputted value",
 			"functionCategory": "",

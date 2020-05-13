@@ -11,6 +11,41 @@
 			{
 				"frames": [
 					{
+						"width": 17,
+						"height": 23,
+						"originX": 0.5,
+						"originY": 0.7391304347826086,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7704630,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 17,
+						"height": 23,
+						"originX": 0.5,
+						"originY": 0.7391304347826086,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 3148989,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 160819040575090,
+				"name": "Animation 1",
+				"isLooping": true,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 2
+			},
+			{
+				"frames": [
+					{
 						"width": 16,
 						"height": 22,
 						"originX": 0.5,
@@ -18,7 +53,7 @@
 						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 1714067,
+						"imageSpriteId": 6280472,
 						"collisionPoly": {
 							"points": [
 								0,
@@ -50,7 +85,7 @@
 						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 7744811,
+						"imageSpriteId": 7065442,
 						"collisionPoly": {
 							"points": [
 								0,
@@ -75,8 +110,8 @@
 						"duration": 1
 					}
 				],
-				"sid": 160819040575090,
-				"name": "Animation 1",
+				"sid": 459873381952754,
+				"name": "old",
 				"isLooping": true,
 				"isPingPong": false,
 				"repeatCount": 1,
