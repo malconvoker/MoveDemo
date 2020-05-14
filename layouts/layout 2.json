@@ -1049,7 +1049,7 @@
 					"world": {
 						"x": 200,
 						"y": -20,
-						"width": 16,
+						"width": 17,
 						"height": 23,
 						"originX": 0.5,
 						"originY": 0.7391304347826086,
@@ -1155,6 +1155,7 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+<<<<<<< HEAD
 				},
 				{
 					"type": "PFblocker",
@@ -1283,6 +1284,8 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+=======
+>>>>>>> parent of c4c2c2d... 0.3.1 Pathfind fix (finished?)
 				}
 			],
 			"sid": 733054251646079,

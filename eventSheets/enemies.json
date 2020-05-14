@@ -485,6 +485,7 @@
 											"id": "set-boolean-instvar",
 											"objectClass": "E_UpDownBase",
 											"sid": 202817771163479,
+											"breakpoint": true,
 											"parameters": {
 												"instance-variable": "TurnDone",
 												"value": "true"
@@ -603,6 +604,7 @@
 													"id": "set-boolean-instvar",
 													"objectClass": "E_UpDownBase",
 													"sid": 915783218904319,
+													"breakpoint": true,
 													"parameters": {
 														"instance-variable": "TurnDone",
 														"value": "true"
@@ -645,6 +647,7 @@
 											"id": "set-boolean-instvar",
 											"objectClass": "E_UpDownBase",
 											"sid": 784264344159892,
+											"breakpoint": true,
 											"parameters": {
 												"instance-variable": "TurnDone",
 												"value": "true"
@@ -978,50 +981,9 @@
 											}
 										}
 									],
-									"actions": [],
-									"sid": 850503308824993,
-									"children": [
+									"actions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "for-each",
-													"objectClass": "System",
-													"sid": 696479007089906,
-													"parameters": {
-														"object": "EnemyBases"
-													}
-												},
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "EnemyBases",
-													"sid": 334607452135075,
-													"parameters": {
-														"instance-variable": "TurnOrder",
-														"comparison": 1,
-														"value": "Turn"
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "Spawn pathfinding blocker on each other enemy"
-												},
-												{
-													"id": "spawn-another-object",
-													"objectClass": "EnemyBases",
-													"sid": 675090066881251,
-													"parameters": {
-														"object": "PFblocker",
-														"layer": "0",
-														"image-point": "\"center\""
-													}
-												}
-											],
-											"sid": 561101748723542
-										},
-										{
+<<<<<<< HEAD
 											"eventType": "block",
 											"conditions": [],
 											"actions": [
@@ -1036,8 +998,19 @@
 												}
 											],
 											"sid": 887987300830772
+=======
+											"id": "find-path",
+											"objectClass": "E_SlowChaseBase",
+											"sid": 745079404693807,
+											"behaviorType": "Pathfinding",
+											"parameters": {
+												"x": "PlayerBase.X",
+												"y": "PlayerBase.Y"
+											}
+>>>>>>> parent of c4c2c2d... 0.3.1 Pathfind fix (finished?)
 										}
-									]
+									],
+									"sid": 850503308824993
 								},
 								{
 									"eventType": "block",
@@ -1190,11 +1163,6 @@
 								"instance-variable": "TurnDone",
 								"value": "true"
 							}
-						},
-						{
-							"id": "destroy",
-							"objectClass": "PFblocker",
-							"sid": 607312732244824
 						}
 					],
 					"sid": 165458451877291
@@ -1227,11 +1195,6 @@
 								"instance-variable": "TurnDone",
 								"value": "true"
 							}
-						},
-						{
-							"id": "destroy",
-							"objectClass": "PFblocker",
-							"sid": 936056609582500
 						}
 					],
 					"sid": 670373874896996
@@ -2114,6 +2077,7 @@
 					"id": "set-boolean-instvar",
 					"objectClass": "EnemyBases",
 					"sid": 237934606896280,
+					"breakpoint": true,
 					"parameters": {
 						"instance-variable": "TurnInProgress",
 						"value": "false"

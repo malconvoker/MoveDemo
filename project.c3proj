@@ -98,11 +98,15 @@
 					"E_SlowChaseMask",
 					"E_UpDownBase",
 					"E_UpDownMask",
+<<<<<<< HEAD
 					"SlowChaseMoveTile",
 					"PFblocker",
 					"E_SeeChaseBase",
 					"E_SeeChaseMask",
 					"SeeChaseMoveTile"
+=======
+					"EnemyMoveTile"
+>>>>>>> parent of c4c2c2d... 0.3.1 Pathfind fix (finished?)
 				],
 				"subfolders": [],
 				"name": "Enemies"

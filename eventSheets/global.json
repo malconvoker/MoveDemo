@@ -52,10 +52,6 @@
 			"sid": 126844405262762
 		},
 		{
-			"eventType": "comment",
-			"text": "PF obstacle can't cut corners, PF path cost object can cut corners"
-		},
-		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -82,6 +78,7 @@
 					"parameters": {
 						"obstacle": "Collisions"
 					}
+<<<<<<< HEAD
 				},
 				{
 					"id": "add-obstacle",
@@ -111,6 +108,8 @@
 					"parameters": {
 						"obstacle": "Collisions"
 					}
+=======
+>>>>>>> parent of c4c2c2d... 0.3.1 Pathfind fix (finished?)
 				}
 			],
 			"sid": 817354963574250
