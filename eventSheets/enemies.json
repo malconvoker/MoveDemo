@@ -1026,27 +1026,12 @@
 											"conditions": [],
 											"actions": [
 												{
-													"id": "regenerate-region-around-object",
-													"objectClass": "EnemyBases",
-													"sid": 330969388027308,
-													"behaviorType": "Pathfinding",
-													"parameters": {
-														"object": "PFblocker"
-													}
-												},
-												{
-													"id": "wait-for-previous-actions",
-													"objectClass": "System",
-													"sid": 260012841427772
-												},
-												{
-													"id": "find-path",
+													"id": "set-boolean-instvar",
 													"objectClass": "E_SlowChaseBase",
-													"sid": 751000188615267,
-													"behaviorType": "Pathfinding",
+													"sid": 586970038714653,
 													"parameters": {
-														"x": "PlayerBase.X",
-														"y": "PlayerBase.Y"
+														"instance-variable": "PFmapping",
+														"value": "true"
 													}
 												}
 											],
@@ -1102,6 +1087,46 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 137931826553068,
+							"parameters": {
+								"instance-variable": "PFmapping"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "regenerate-region-around-object",
+							"objectClass": "EnemyBases",
+							"sid": 997192135288827,
+							"behaviorType": "Pathfinding",
+							"parameters": {
+								"object": "PFblocker"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 898735164285058
+						},
+						{
+							"id": "find-path",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 822192633968217,
+							"behaviorType": "Pathfinding",
+							"parameters": {
+								"x": "PlayerBase.X",
+								"y": "PlayerBase.Y"
+							}
+						}
+					],
+					"sid": 708801397535632
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-path-found",
 							"objectClass": "E_SlowChaseBase",
 							"sid": 527450238342250,
@@ -1115,7 +1140,7 @@
 						},
 						{
 							"id": "set-animation-frame",
-							"objectClass": "EnemyMoveTile",
+							"objectClass": "SlowChaseMoveTile",
 							"sid": 702551115573505,
 							"parameters": {
 								"frame-number": "Functions.GetAngle45(\nE_SlowChaseBase.ImagePointX(\"center\"),\nE_SlowChaseBase.ImagePointY(\"center\"),\nE_SlowChaseBase.Pathfinding.NodeXAt(0),\nE_SlowChaseBase.Pathfinding.NodeYAt(0))/45"
@@ -1126,8 +1151,17 @@
 							"objectClass": "E_SlowChaseBase",
 							"sid": 461351890349885,
 							"parameters": {
-								"x": "EnemyMoveTile.ImagePointX(\"position\")",
-								"y": "EnemyMoveTile.ImagePointY(\"position\")"
+								"x": "SlowChaseMoveTile.ImagePointX(\"position\")",
+								"y": "SlowChaseMoveTile.ImagePointY(\"position\")"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SlowChaseBase",
+							"sid": 812369692440583,
+							"parameters": {
+								"instance-variable": "PFmapping",
+								"value": "false"
 							}
 						},
 						{
@@ -1143,7 +1177,6 @@
 							"id": "set-boolean-instvar",
 							"objectClass": "E_SlowChaseBase",
 							"sid": 125195446555855,
-							"breakpoint": true,
 							"parameters": {
 								"instance-variable": "SkipPause",
 								"value": "false"
@@ -1312,6 +1345,689 @@
 			"sid": 376696151413526
 		},
 		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Enemy_SeeChase",
+			"description": "Enemy that moves towards player every turn, but only if sees player\nDamages player instead if adjacent",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Line of Sight"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "has-los-between-positions",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 400069638353157,
+							"behaviorType": "LineOfSight",
+							"parameters": {
+								"from-x": "Self.ImagePointX(\"center\")",
+								"from-y": "Self.ImagePointY(\"center\")",
+								"from-angle": "0",
+								"to-x": "PlayerBase.ImagePointX(\"center\")",
+								"to-y": "PlayerBase.ImagePointY(\"center\")"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 421105915071060,
+							"parameters": {
+								"instance-variable": "SeesPlayer",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 580500386811754
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 334323000503036
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 217848633588216,
+							"parameters": {
+								"instance-variable": "SeesPlayer",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 806615448805492
+				},
+				{
+					"eventType": "comment",
+					"text": "Execute turn"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 594328400915579,
+							"parameters": {
+								"instance-variable": "TurnOrder",
+								"comparison": 0,
+								"value": "Turn"
+							}
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 685999574582381,
+							"parameters": {
+								"instance-variable": "TurnDone"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 121740917585503,
+							"parameters": {
+								"instance-variable": "TurnInProgress"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "rotate-clockwise",
+							"objectClass": "E_SeeChaseMask",
+							"sid": 938167049420002,
+							"disabled": true,
+							"parameters": {
+								"degrees": "45"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 400539851695736,
+							"parameters": {
+								"instance-variable": "TurnInProgress",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 237424309579705,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "E_SeeChaseBase",
+									"sid": 335761348990707,
+									"parameters": {
+										"instance-variable": "SeesPlayer"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 358020954521030,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 533385645760576,
+											"parameters": {
+												"first-value": "Functions.PlayerDistance(E_SeeChaseBase.X, E_SeeChaseBase.Y)",
+												"comparison": 0,
+												"second-value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Is in melee range to player"
+										}
+									],
+									"sid": 672202024178286,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "E_SeeChaseBase",
+													"sid": 576516228109184,
+													"parameters": {
+														"instance-variable": "ActTime",
+														"comparison": 5,
+														"value": "Self.ActThAttack"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "DamagePlayer",
+													"sid": 291348565764989,
+													"parameters": [
+														"E_SeeChaseBase.meleeDmg"
+													]
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "E_SeeChaseBase",
+													"sid": 312945581646037,
+													"parameters": {
+														"instance-variable": "ActTime",
+														"value": "0"
+													}
+												},
+												{
+													"id": "spawn-another-object",
+													"objectClass": "PlayerBase",
+													"sid": 491271133336179,
+													"parameters": {
+														"object": "PfPing",
+														"layer": "0",
+														"image-point": "\"center\""
+													}
+												},
+												{
+													"id": "flash",
+													"objectClass": "PlayerMask",
+													"sid": 227250405762331,
+													"behaviorType": "Flash",
+													"parameters": {
+														"on-time": "0.1",
+														"off-time": "0.1",
+														"duration": "0.5"
+													}
+												}
+											],
+											"sid": 895254040281863
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 740225491042578
+												}
+											],
+											"actions": [
+												{
+													"id": "add-to-instvar",
+													"objectClass": "E_SeeChaseBase",
+													"sid": 439113543908723,
+													"parameters": {
+														"instance-variable": "ActTime",
+														"value": "1"
+													}
+												}
+											],
+											"sid": 748652940869050
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "E_SeeChaseBase",
+													"sid": 679420667429804,
+													"parameters": {
+														"instance-variable": "SkipPause",
+														"value": "false"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "E_SeeChaseBase",
+													"sid": 364835311909800,
+													"parameters": {
+														"instance-variable": "TurnDone",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 336042908703995
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 917530933269822
+										}
+									],
+									"actions": [],
+									"sid": 765534216112140,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "E_SeeChaseBase",
+													"sid": 149678689940794,
+													"parameters": {
+														"instance-variable": "ActTime",
+														"comparison": 5,
+														"value": "Self.ActThMove"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 402174746472712,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "for-each",
+															"objectClass": "System",
+															"sid": 797276915425413,
+															"parameters": {
+																"object": "EnemyBases"
+															}
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "EnemyBases",
+															"sid": 422165088921202,
+															"parameters": {
+																"instance-variable": "TurnOrder",
+																"comparison": 1,
+																"value": "Turn"
+															}
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "Spawn pathfinding blocker on each other enemy"
+														},
+														{
+															"id": "spawn-another-object",
+															"objectClass": "EnemyBases",
+															"sid": 144954854018037,
+															"parameters": {
+																"object": "PFblocker",
+																"layer": "0",
+																"image-point": "\"center\""
+															}
+														}
+													],
+													"sid": 511386183731337
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "E_SeeChaseBase",
+															"sid": 296847312972044,
+															"parameters": {
+																"instance-variable": "PFmapping",
+																"value": "true"
+															}
+														}
+													],
+													"sid": 227191397248678
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 110397241655374
+												}
+											],
+											"actions": [
+												{
+													"id": "add-to-instvar",
+													"objectClass": "E_SeeChaseBase",
+													"sid": 449207288873234,
+													"parameters": {
+														"instance-variable": "ActTime",
+														"value": "1"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "E_SeeChaseBase",
+													"sid": 795718123526951,
+													"parameters": {
+														"instance-variable": "SkipPause",
+														"value": "true"
+													}
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "E_SeeChaseBase",
+													"sid": 790076766839414,
+													"parameters": {
+														"instance-variable": "TurnDone",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 583901592632960
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 864234692722233
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-instvar",
+									"objectClass": "E_SeeChaseBase",
+									"sid": 454361044116184,
+									"parameters": {
+										"instance-variable": "ActTime",
+										"value": "1"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "E_SeeChaseBase",
+									"sid": 411789142826261,
+									"parameters": {
+										"instance-variable": "SkipPause",
+										"value": "true"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "E_SeeChaseBase",
+									"sid": 883320314067782,
+									"parameters": {
+										"instance-variable": "TurnDone",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 231930123786844
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 459071324087329,
+							"parameters": {
+								"instance-variable": "PFmapping"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "regenerate-region-around-object",
+							"objectClass": "EnemyBases",
+							"sid": 480305923939156,
+							"behaviorType": "Pathfinding",
+							"parameters": {
+								"object": "PFblocker"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 594393910456070
+						},
+						{
+							"id": "find-path",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 645982778397562,
+							"behaviorType": "Pathfinding",
+							"parameters": {
+								"x": "PlayerBase.X",
+								"y": "PlayerBase.Y"
+							}
+						}
+					],
+					"sid": 452837203928885
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-path-found",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 362493294659255,
+							"behaviorType": "Pathfinding"
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Set EnemyMoveTile angle towards next pathfinding node"
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "SeeChaseMoveTile",
+							"sid": 735930102631586,
+							"parameters": {
+								"frame-number": "Functions.GetAngle45(\nE_SeeChaseBase.ImagePointX(\"center\"),\nE_SeeChaseBase.ImagePointY(\"center\"),\nE_SeeChaseBase.Pathfinding.NodeXAt(0),\nE_SeeChaseBase.Pathfinding.NodeYAt(0))/45"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 985917220677419,
+							"parameters": {
+								"x": "SeeChaseMoveTile.ImagePointX(\"position\")",
+								"y": "SeeChaseMoveTile.ImagePointY(\"position\")"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 484871631627473,
+							"parameters": {
+								"instance-variable": "ActTime",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 459749569582300,
+							"breakpoint": true,
+							"parameters": {
+								"instance-variable": "SkipPause",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 152190411361729,
+							"parameters": {
+								"instance-variable": "TurnDone",
+								"value": "true"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "PFblocker",
+							"sid": 590455736804734
+						}
+					],
+					"sid": 711794771640531
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-failed-to-find-path",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 330604990495744,
+							"behaviorType": "Pathfinding"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 423431051684169,
+							"parameters": {
+								"instance-variable": "SkipPause",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 841559232412979,
+							"parameters": {
+								"instance-variable": "TurnDone",
+								"value": "true"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "PFblocker",
+							"sid": 767304634621311
+						}
+					],
+					"sid": 157624211096084
+				},
+				{
+					"eventType": "comment",
+					"text": "Set animation"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 589709569919909,
+							"parameters": {
+								"instance-variable": "SeesPlayer"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "E_SeeChaseMask",
+							"sid": 939496068457526,
+							"parameters": {
+								"animation": "\"active\"",
+								"from": "current-frame"
+							}
+						}
+					],
+					"sid": 656523111439307
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 374017108154388
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "E_SeeChaseMask",
+							"sid": 585508675171747,
+							"parameters": {
+								"animation": "\"idle\"",
+								"from": "current-frame"
+							}
+						}
+					],
+					"sid": 365926871294855
+				},
+				{
+					"eventType": "comment",
+					"text": "Highlight when about to be attacked"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "E_SeeChaseBase",
+							"sid": 856078997450477,
+							"parameters": {
+								"object": "MoveTile"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-default-color",
+							"objectClass": "E_SeeChaseMask",
+							"sid": 213210275742173,
+							"parameters": {
+								"color": "rgb(255, 150, 50)"
+							}
+						}
+					],
+					"sid": 853236083668692
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 192650590219947
+						}
+					],
+					"actions": [
+						{
+							"id": "set-default-color",
+							"objectClass": "E_SeeChaseMask",
+							"sid": 295817400263418,
+							"parameters": {
+								"color": "rgb(255, 255, 255)"
+							}
+						}
+					],
+					"sid": 599928192174981
+				}
+			],
+			"sid": 343835094701308
+		},
+		{
 			"eventType": "comment",
 			"text": "Set mask locations to bases"
 		},
@@ -1345,11 +2061,29 @@
 				},
 				{
 					"id": "set-position",
-					"objectClass": "EnemyMoveTile",
+					"objectClass": "SlowChaseMoveTile",
 					"sid": 545857263838837,
 					"parameters": {
 						"x": "E_SlowChaseBase.X",
 						"y": "E_SlowChaseBase.Y"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "E_SeeChaseMask",
+					"sid": 772948199334665,
+					"parameters": {
+						"x": "E_SeeChaseBase.ImagePointX(\"center\")",
+						"y": "E_SeeChaseBase.ImagePointY(\"center\")"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "SeeChaseMoveTile",
+					"sid": 984272535060116,
+					"parameters": {
+						"x": "E_SeeChaseBase.X",
+						"y": "E_SeeChaseBase.Y"
 					}
 				}
 			],

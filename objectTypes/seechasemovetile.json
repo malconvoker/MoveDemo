@@ -1,7 +1,7 @@
 {
-	"name": "EnemyMoveTile",
+	"name": "SeeChaseMoveTile",
 	"plugin-id": "Sprite",
-	"sid": 307818309018749,
+	"sid": 113309478210024,
 	"isGlobal": false,
 	"instanceVariables": [],
 	"behaviorTypes": [],
@@ -18,7 +18,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 9019615,
+						"imageSpriteId": 2546275,
 						"collisionPoly": {
 							"points": [
 								0.05,
@@ -49,7 +49,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 2247799,
+						"imageSpriteId": 7512264,
 						"collisionPoly": {
 							"points": [
 								0.95,
@@ -80,7 +80,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 498589,
+						"imageSpriteId": 5185152,
 						"collisionPoly": {
 							"points": [
 								0.95,
@@ -111,7 +111,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 6567312,
+						"imageSpriteId": 2815600,
 						"collisionPoly": {
 							"points": [
 								0.95,
@@ -142,7 +142,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 2133537,
+						"imageSpriteId": 6590111,
 						"collisionPoly": {
 							"points": [
 								0.95,
@@ -173,7 +173,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 8883474,
+						"imageSpriteId": 7407714,
 						"collisionPoly": {
 							"points": [
 								0.05,
@@ -204,7 +204,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 298797,
+						"imageSpriteId": 7699900,
 						"collisionPoly": {
 							"points": [
 								0.05,
@@ -235,7 +235,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 8381105,
+						"imageSpriteId": 8137126,
 						"collisionPoly": {
 							"points": [
 								0.05,
@@ -259,7 +259,7 @@
 						"duration": 1
 					}
 				],
-				"sid": 191080723155397,
+				"sid": 845383730077411,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

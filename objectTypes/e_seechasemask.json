@@ -1,0 +1,159 @@
+{
+	"name": "E_SeeChaseMask",
+	"plugin-id": "Sprite",
+	"sid": 170704725186739,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 16,
+						"height": 22,
+						"originX": 0.5,
+						"originY": 0.7272727272727273,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7115595,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 16,
+						"height": 22,
+						"originX": 0.5,
+						"originY": 0.7272727272727273,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 8382755,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 168171591838484,
+				"name": "idle",
+				"isLooping": true,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 2
+			},
+			{
+				"frames": [
+					{
+						"width": 16,
+						"height": 22,
+						"originX": 0.5,
+						"originY": 0.7272727272727273,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 170882,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 16,
+						"height": 22,
+						"originX": 0.5,
+						"originY": 0.7272727272727273,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 8261300,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 844293250369184,
+				"name": "active",
+				"isLooping": true,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 4
+			},
+			{
+				"frames": [
+					{
+						"width": 16,
+						"height": 22,
+						"originX": 0.5,
+						"originY": 0.7272727272727273,
+						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 4057734,
+						"collisionPoly": {
+							"points": [
+								0,
+								0,
+								1,
+								0,
+								1,
+								0,
+								1,
+								0.9090909090909091,
+								1,
+								0.9090909090909091,
+								1,
+								0.9090909090909091,
+								0,
+								0.9090909090909091,
+								0,
+								0.9090909090909091
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 16,
+						"height": 22,
+						"originX": 0.5,
+						"originY": 0.7272727272727273,
+						"originalSource": "C:\\Users\\mctur\\Downloads\\chr_spr1.png",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6270748,
+						"collisionPoly": {
+							"points": [
+								0,
+								0,
+								1,
+								0,
+								1,
+								0,
+								1,
+								0.9090909090909091,
+								1,
+								0.9090909090909091,
+								1,
+								0.9090909090909091,
+								0,
+								0.9090909090909091,
+								0,
+								0.9090909090909091
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 733211154893805,
+				"name": "old",
+				"isLooping": true,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 3
+			}
+		],
+		"subfolders": []
+	}
+}

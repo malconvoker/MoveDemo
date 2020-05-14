@@ -69,6 +69,14 @@
 			"author": "Scirra",
 			"version": "r197.2",
 			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "LOS",
+			"name": "Line of sight",
+			"author": "Scirra",
+			"version": "r197.2",
+			"bundled": false
 		}
 	],
 	"uniqueId": "0q5jywda9ru",
@@ -90,8 +98,11 @@
 					"E_SlowChaseMask",
 					"E_UpDownBase",
 					"E_UpDownMask",
-					"EnemyMoveTile",
-					"PFblocker"
+					"SlowChaseMoveTile",
+					"PFblocker",
+					"E_SeeChaseBase",
+					"E_SeeChaseMask",
+					"SeeChaseMoveTile"
 				],
 				"subfolders": [],
 				"name": "Enemies"
@@ -143,7 +154,15 @@
 			"members": [
 				"E_SlowChaseBase",
 				"E_SlowChaseMask",
-				"EnemyMoveTile"
+				"SlowChaseMoveTile"
+			],
+			"selectMode": "normal"
+		},
+		{
+			"members": [
+				"E_SeeChaseBase",
+				"E_SeeChaseMask",
+				"SeeChaseMoveTile"
 			],
 			"selectMode": "normal"
 		}
@@ -159,7 +178,8 @@
 	"layouts": {
 		"items": [
 			"Layout 1",
-			"Layout 2"
+			"Layout 2",
+			"ObjectBank"
 		],
 		"subfolders": []
 	},

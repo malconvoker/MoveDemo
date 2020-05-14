@@ -639,7 +639,7 @@
 				{
 					"type": "E_UpDownBase",
 					"properties": {
-						"initially-visible": false,
+						"initially-visible": true,
 						"initial-animation": "Animation 1",
 						"initial-frame": 0,
 						"enable-collisions": true,
@@ -658,6 +658,8 @@
 						"hp": 2,
 						"meleeDmg": 1,
 						"SkipPause": false,
+						"SeesPlayer": false,
+						"PFmapping": false,
 						"MoveUp": true
 					},
 					"behaviors": {
@@ -672,7 +674,15 @@
 								"rotate-speed": 135,
 								"rotate-object": false,
 								"diagonals": true,
-								"enabled": true
+								"enabled": false
+							}
+						},
+						"LineOfSight": {
+							"properties": {
+								"obstacles": "custom",
+								"range": 2000,
+								"cone-of-view": 360,
+								"use-collision-cells": true
 							}
 						}
 					},
@@ -715,6 +725,8 @@
 						"hp": 2,
 						"meleeDmg": 1,
 						"SkipPause": false,
+						"SeesPlayer": false,
+						"PFmapping": false,
 						"MoveUp": true
 					},
 					"behaviors": {
@@ -729,7 +741,15 @@
 								"rotate-speed": 135,
 								"rotate-object": false,
 								"diagonals": true,
-								"enabled": true
+								"enabled": false
+							}
+						},
+						"LineOfSight": {
+							"properties": {
+								"obstacles": "custom",
+								"range": 2000,
+								"cone-of-view": 360,
+								"use-collision-cells": true
 							}
 						}
 					},
@@ -771,7 +791,9 @@
 						"maxhp": 2,
 						"hp": 2,
 						"meleeDmg": 1,
-						"SkipPause": false
+						"SkipPause": false,
+						"SeesPlayer": false,
+						"PFmapping": false
 					},
 					"behaviors": {
 						"Pathfinding": {
@@ -786,6 +808,14 @@
 								"rotate-object": false,
 								"diagonals": true,
 								"enabled": true
+							}
+						},
+						"LineOfSight": {
+							"properties": {
+								"obstacles": "custom",
+								"range": 2000,
+								"cone-of-view": 360,
+								"use-collision-cells": true
 							}
 						}
 					},
@@ -827,7 +857,9 @@
 						"maxhp": 2,
 						"hp": 2,
 						"meleeDmg": 1,
-						"SkipPause": false
+						"SkipPause": false,
+						"SeesPlayer": false,
+						"PFmapping": false
 					},
 					"behaviors": {
 						"Pathfinding": {
@@ -842,6 +874,14 @@
 								"rotate-object": false,
 								"diagonals": true,
 								"enabled": true
+							}
+						},
+						"LineOfSight": {
+							"properties": {
+								"obstacles": "custom",
+								"range": 2000,
+								"cone-of-view": 360,
+								"use-collision-cells": true
 							}
 						}
 					},
@@ -883,7 +923,9 @@
 						"maxhp": 2,
 						"hp": 2,
 						"meleeDmg": 1,
-						"SkipPause": false
+						"SkipPause": false,
+						"SeesPlayer": false,
+						"PFmapping": false
 					},
 					"behaviors": {
 						"Pathfinding": {
@@ -898,6 +940,14 @@
 								"rotate-object": false,
 								"diagonals": true,
 								"enabled": true
+							}
+						},
+						"LineOfSight": {
+							"properties": {
+								"obstacles": "custom",
+								"range": 2000,
+								"cone-of-view": 360,
+								"use-collision-cells": true
 							}
 						}
 					},
@@ -919,7 +969,7 @@
 					}
 				},
 				{
-					"type": "EnemyMoveTile",
+					"type": "SlowChaseMoveTile",
 					"properties": {
 						"initially-visible": false,
 						"initial-animation": "Animation 1",
@@ -1125,6 +1175,105 @@
 						"height": 20,
 						"originX": 0.5,
 						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "E_SeeChaseMask",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "idle",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 58,
+					"instanceVariables": {},
+					"behaviors": {
+						"Flash": {
+							"properties": {}
+						}
+					},
+					"world": {
+						"x": 200,
+						"y": -60,
+						"width": 16,
+						"height": 22,
+						"originX": 0.5,
+						"originY": 0.7272727272727273,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "E_SeeChaseBase",
+					"properties": {
+						"initially-visible": false,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 59,
+					"instanceVariables": {
+						"TurnOrder": 1,
+						"LastInTurn": false,
+						"ActTime": 0,
+						"ActThMove": 0,
+						"ActThAttack": 0,
+						"TurnDone": false,
+						"TurnInProgress": false,
+						"maxhp": 2,
+						"hp": 2,
+						"meleeDmg": 1,
+						"SkipPause": false,
+						"SeesPlayer": false,
+						"PFmapping": false
+					},
+					"behaviors": {
+						"Pathfinding": {
+							"properties": {
+								"cell-size": 20,
+								"cell-border": -1,
+								"obstacles": "custom",
+								"max-speed": 200,
+								"acceleration": 1000,
+								"deceleration": 2000,
+								"rotate-speed": 135,
+								"rotate-object": false,
+								"diagonals": true,
+								"enabled": true
+							}
+						},
+						"LineOfSight": {
+							"properties": {
+								"obstacles": "custom",
+								"range": 2000,
+								"cone-of-view": 360,
+								"use-collision-cells": true
+							}
+						}
+					},
+					"world": {
+						"x": 140,
+						"y": 40,
+						"width": 20,
+						"height": 20,
+						"originX": 0,
+						"originY": 0,
 						"color": [
 							1,
 							1,
