@@ -262,8 +262,6 @@
 						"hp": 2,
 						"meleeDmg": 1,
 						"SkipPause": false,
-						"SeesPlayer": false,
-						"PFmapping": false,
 						"MoveUp": true
 					},
 					"behaviors": {
@@ -279,14 +277,6 @@
 								"rotate-object": false,
 								"diagonals": true,
 								"enabled": true
-							}
-						},
-						"LineOfSight": {
-							"properties": {
-								"obstacles": "solids",
-								"range": 10000,
-								"cone-of-view": 360,
-								"use-collision-cells": true
 							}
 						}
 					},
@@ -329,8 +319,6 @@
 						"hp": 2,
 						"meleeDmg": 1,
 						"SkipPause": false,
-						"SeesPlayer": false,
-						"PFmapping": false,
 						"MoveUp": true
 					},
 					"behaviors": {
@@ -346,14 +334,6 @@
 								"rotate-object": false,
 								"diagonals": true,
 								"enabled": true
-							}
-						},
-						"LineOfSight": {
-							"properties": {
-								"obstacles": "solids",
-								"range": 10000,
-								"cone-of-view": 360,
-								"use-collision-cells": true
 							}
 						}
 					},
@@ -395,9 +375,7 @@
 						"maxhp": 2,
 						"hp": 2,
 						"meleeDmg": 1,
-						"SkipPause": false,
-						"SeesPlayer": false,
-						"PFmapping": false
+						"SkipPause": false
 					},
 					"behaviors": {
 						"Pathfinding": {
@@ -412,14 +390,6 @@
 								"rotate-object": false,
 								"diagonals": true,
 								"enabled": true
-							}
-						},
-						"LineOfSight": {
-							"properties": {
-								"obstacles": "solids",
-								"range": 10000,
-								"cone-of-view": 360,
-								"use-collision-cells": true
 							}
 						}
 					},
@@ -461,9 +431,7 @@
 						"maxhp": 2,
 						"hp": 2,
 						"meleeDmg": 1,
-						"SkipPause": false,
-						"SeesPlayer": false,
-						"PFmapping": false
+						"SkipPause": false
 					},
 					"behaviors": {
 						"Pathfinding": {
@@ -478,14 +446,6 @@
 								"rotate-object": false,
 								"diagonals": true,
 								"enabled": true
-							}
-						},
-						"LineOfSight": {
-							"properties": {
-								"obstacles": "solids",
-								"range": 10000,
-								"cone-of-view": 360,
-								"use-collision-cells": true
 							}
 						}
 					},
@@ -527,9 +487,7 @@
 						"maxhp": 2,
 						"hp": 2,
 						"meleeDmg": 1,
-						"SkipPause": false,
-						"SeesPlayer": false,
-						"PFmapping": false
+						"SkipPause": false
 					},
 					"behaviors": {
 						"Pathfinding": {
@@ -544,14 +502,6 @@
 								"rotate-object": false,
 								"diagonals": true,
 								"enabled": true
-							}
-						},
-						"LineOfSight": {
-							"properties": {
-								"obstacles": "solids",
-								"range": 10000,
-								"cone-of-view": 360,
-								"use-collision-cells": true
 							}
 						}
 					},
@@ -927,7 +877,7 @@
 					}
 				},
 				{
-					"type": "SlowChaseMoveTile",
+					"type": "EnemyMoveTile",
 					"properties": {
 						"initially-visible": false,
 						"initial-animation": "Animation 1",

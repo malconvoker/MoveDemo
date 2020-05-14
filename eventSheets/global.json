@@ -102,15 +102,6 @@
 						"object": "PFblocker",
 						"cost": "500"
 					}
-				},
-				{
-					"id": "add-obstacle",
-					"objectClass": "EnemyBases",
-					"sid": 144494570353267,
-					"behaviorType": "LineOfSight",
-					"parameters": {
-						"obstacle": "Collisions"
-					}
 				}
 			],
 			"sid": 817354963574250

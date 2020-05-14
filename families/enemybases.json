@@ -24,13 +24,13 @@
 		{
 			"name": "ActThMove",
 			"type": "number",
-			"desc": "Threshold for \"idle\" turns required to move",
+			"desc": "Threshhold for \"idle\" turns required to move",
 			"sid": 222280585411326
 		},
 		{
 			"name": "ActThAttack",
 			"type": "number",
-			"desc": "Threshold for \"idle\" turns required to attack",
+			"desc": "Threshhold for \"idle\" turns required to attack",
 			"sid": 293093181967551
 		},
 		{
@@ -42,7 +42,7 @@
 		{
 			"name": "TurnInProgress",
 			"type": "boolean",
-			"desc": "Is the turn currently being processed, to tick only once",
+			"desc": "Is the turn currently being processed",
 			"sid": 320011080732413
 		},
 		{
@@ -68,18 +68,6 @@
 			"type": "boolean",
 			"desc": "Skip the pause between enemy turns, = instant turn",
 			"sid": 602094647505018
-		},
-		{
-			"name": "SeesPlayer",
-			"type": "boolean",
-			"desc": "Does the enemy have Line of Sight (not used for all)",
-			"sid": 390531351600646
-		},
-		{
-			"name": "PFmapping",
-			"type": "boolean",
-			"desc": "Is the enemy currently looking for a pathfinding map",
-			"sid": 649416957450459
 		}
 	],
 	"behaviorTypes": [
@@ -87,17 +75,11 @@
 			"behaviorId": "Pathfinding",
 			"name": "Pathfinding",
 			"sid": 625310327085603
-		},
-		{
-			"behaviorId": "LOS",
-			"name": "LineOfSight",
-			"sid": 976795934985197
 		}
 	],
 	"effectTypes": [],
 	"members": [
 		"E_UpDownBase",
-		"E_SlowChaseBase",
-		"E_SeeChaseBase"
+		"E_SlowChaseBase"
 	]
 }
