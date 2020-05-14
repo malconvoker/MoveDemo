@@ -52,10 +52,6 @@
 			"sid": 126844405262762
 		},
 		{
-			"eventType": "comment",
-			"text": "PF obstacle can't cut corners, PF path cost object can cut corners"
-		},
-		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -81,26 +77,6 @@
 					"behaviorType": "Pathfinding",
 					"parameters": {
 						"obstacle": "Collisions"
-					}
-				},
-				{
-					"id": "add-obstacle",
-					"objectClass": "EnemyBases",
-					"sid": 845989444374634,
-					"disabled": true,
-					"behaviorType": "Pathfinding",
-					"parameters": {
-						"obstacle": "PFblocker"
-					}
-				},
-				{
-					"id": "add-path-cost",
-					"objectClass": "EnemyBases",
-					"sid": 934073610887494,
-					"behaviorType": "Pathfinding",
-					"parameters": {
-						"object": "PFblocker",
-						"cost": "500"
 					}
 				}
 			],

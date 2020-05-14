@@ -90,8 +90,7 @@
 					"E_SlowChaseMask",
 					"E_UpDownBase",
 					"E_UpDownMask",
-					"EnemyMoveTile",
-					"PFblocker"
+					"EnemyMoveTile"
 				],
 				"subfolders": [],
 				"name": "Enemies"
