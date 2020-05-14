@@ -679,6 +679,19 @@
 									"disabled": true
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "move-to-top",
+									"objectClass": "Node",
+									"sid": 801764388036019
+								}
+							],
+							"sid": 856446429495171,
+							"disabled": true
 						}
 					]
 				},
